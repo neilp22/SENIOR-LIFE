@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorLife - Formulari de Registre</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eaf4ff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        h1, h2 {
+            color: #4CAF50;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, select, button, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function toggleForm() {
+            const userType = document.getElementById('user-type').value;
+            const forms = document.querySelectorAll('.user-form');
+            forms.forEach(form => form.style.display = 'none');
+
+            if (userType) {
+                document.getElementById(`${userType}-form`).style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>SeniorLife - Formulari de Registre</h1>
+    </header>
+
+    <div class="container">
+        <h2>Selecciona el tipus d'usuari</h2>
+        <label for="user-type">Tipus d'usuari</label>
+        <select id="user-type" onchange="toggleForm()">
+            <option value="">Selecciona...</option>
+            <option value="pacient">Pacient</option>
+            <option value="familiar">Familiar</option>
+            <option value="professional">Professional Sanitari</option>
+        </select>
+
+        <!-- Formulari Pacient -->
+        <form id="pacient-form" class="user-form" style="display: none;" action="/register_user" method="POST">
+            <input type="hidden" name="user-type" value="pacient">
+            <h2>Formulari Pacient</h2>
+            <label for="pacient-nom">Nom</label>
+            <input type="text" id="pacient-nom" name="pacient-nom" required>
+
+            <label for="pacient-cognoms">Cognoms</label>
+            <input type="text" id="pacient-cognoms" name="pacient-cognoms" required>
+
+            <label for="pacient-email">Email</label>
+            <input type="email" id="pacient-email" name="pacient-email" required>
+
+            <label for="pacient-password">Contrasenya</label>
+            <input type="password" id="pacient-password" name="pacient-password" required>
+
+            <label for="pacient-dni">DNI</label>
+            <input type="text" id="pacient-dni" name="pacient-dni" required>
+
+            <label for="pacient-telefon">Telèfon</label>
+            <input type="tel" id="pacient-telefon" name="pacient-telefon" required>
+
+            <label for="pacient-direccio">Direcció</label>
+            <input type="text" id="pacient-direccio" name="pacient-direccio" required>
+
+            <label for="pacient-sexe">Sexe</label>
+            <select id="pacient-sexe" name="pacient-sexe" required>
+                <option value="">Selecciona...</option>
+                <option value="M">Home</option>
+                <option value="F">Dona</option>
+            </select>
+
+            <label for="pacient-naixement">Data de Naixement</label>
+            <input type="date" id="pacient-naixement" name="pacient-naixement" required>
+
+            <label for="pacient-foto">Foto de Perfil</label>
+            <input type="file" id="pacient-foto" name="pacient-foto">
+
+            <label for="pacient-cadira">Necessita Cadira de Rodes?</label>
+            <select id="pacient-cadira" name="pacient-cadira" required>
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+
+            <label for="pacient-contactes">Contactes d'Emergència</label>
+            <textarea id="pacient-contactes" name="pacient-contactes"></textarea>
+
+            <label for="pacient-historial">Historial Mèdic</label>
+            <textarea id="pacient-historial" name="pacient-historial"></textarea>
+
+            <label for="pacient-wearable">Informació del Wearable</label>
+            <textarea id="pacient-wearable" name="pacient-wearable"></textarea>
+
+            <label for="pacient-medicaments">Medicaments</label>
+            <textarea id="pacient-medicaments" name="pacient-medicaments"></textarea>
+
+            <label for="pacient-videotrucada">Calendari de Videotrucada</label>
+            <input type="datetime-local" id="pacient-videotrucada" name="pacient-videotrucada">
+
+            <button type="submit">Enviar Formulari</button>
+        </form>
+
+        <!-- Formulari Familiar -->
+        <form id="familiar-form" class="user-form" style="display: none;" action="/register_user" method="POST">
+            <input type="hidden" name="user-type" value="familiar">
+            <h2>Formulari Familiar</h2>
+            <label for="familiar-nom">Nom</label>
+            <input type="text" id="familiar-nom" name="familiar-nom" required>
+
+            <label for="familiar-cognoms">Cognoms</label>
+            <input type="text" id="familiar-cognoms" name="familiar-cognoms" required>
+
+            <label for="familiar-email">Email</label>
+            <input type="email" id="familiar-email" name="familiar-email" required>
+
+            <label for="familiar-password">Contrasenya</label>
+            <input type="password" id="familiar-password" name="familiar-password" required>
+
+            <label for="familiar-dni">DNI</label>
+            <input type="text" id="familiar-dni" name="familiar-dni" required>
+
+            <label for="familiar-telefon">Telèfon</label>
+            <input type="tel" id="familiar-telefon" name="familiar-telefon" required>
+
+            <label for="familiar-direccio">Direcció</label>
+            <input type="text" id="familiar-direccio" name="familiar-direccio" required>
+
+            <label for="familiar-sexe">Sexe</label>
+            <select id="familiar-sexe" name="familiar-sexe" required>
+                <option value="">Selecciona...</option>
+                <option value="M">Home</option>
+                <option value="F">Dona</option>
+            </select>
+
+            <label for="familiar-naixement">Data de Naixement</label>
+            <input type="date" id="familiar-naixement" name="familiar-naixement" required>
+
+            <label for="familiar-foto">Foto de Perfil</label>
+            <input type="file" id="familiar-foto" name="familiar-foto">
+
+            <label for="familiar-pacient">ID del Pacient (DNI)</label>
+            <input type="text" id="familiar-pacient" name="familiar-pacient" required>
+
+            <button type="submit">Enviar Formulari</button>
+        </form>
+
+        <!-- Formulari Professional Sanitari -->
+        <form id="professional-form" class="user-form" style="display: none;" action="/register_user" method="POST">
+            <input type="hidden" name="user-type" value="professional">
+            <h2>Formulari Professional Sanitari</h2>
+            <label for="professional-nom">Nom</label>
+            <input type="text" id="professional-nom" name="professional-nom" required>
+
+            <label for="professional-cognoms">Cognoms</label>
+            <input type="text" id="professional-cognoms" name="professional-cognoms" required>
+
+            <label for="professional-email">Email</label>
+            <input type="email" id="professional-email" name="professional-email" required>
+
+            <label for="professional-password">Contrasenya</label>
+            <input type="password" id="professional-password" name="professional-password" required>
+
+            <label for="professional-dni">DNI</label>
+            <input type="text" id="professional-dni" name="professional-dni" required>
+
+            <label for="professional-telefon">Telèfon</label>
+            <input type="tel" id="professional-telefon" name="professional-telefon" required>
+
+            <label for="professional-direccio">Direcció</label>
+            <input type="text" id="professional-direccio" name="professional-direccio" required>
+
+            <label for="professional-sexe">Sexe</label>
+            <select id="professional-sexe" name="professional-sexe" required>
+                <option value="">Selecciona...</option>
+                <option value="M">Home</option>
+                <option value="F">Dona</option>
+            </select>
+
+            <label for="professional-naixement">Data de Naixement</label>
+            <input type="date" id="professional-naixement" name="professional-naixement" required>
+
+            <label for="professional-foto">Foto de Perfil</label>
+            <input type="file" id="professional-foto" name="professional-foto">
+
+            <label for="professional-especialitat">Especialitat</label>
+            <input type="text" id="professional-especialitat" name="professional-especialitat" required>
+
+            <label for="professional-pacient">ID del Pacient (DNI)</label>
+            <input type="text" id="professional-pacient" name="professional-pacient" required>
+
+            <label for="professional-hospital">Hospital/Clínica</label>
+            <input type="text" id="professional-hospital" name="professional-hospital">
+
+            <label for="professional-numcol">Número de Col·legiat</label>
+            <input type="text" id="professional-numcol" name="professional-numcol" required>
+
+            <label for="professional-assistencia">Assistència a Domicili</label>
+            <select id="professional-assistencia" name="professional-assistencia">
+                <option value="si">Sí</option>
+                <option value="no">No</option>
+            </select>
+
+            <label for="professional-rol">Rol</label>
+            <select id="professional-rol" name="professional-rol" required>
+                <option value="metge">Metge</option>
+                <option value="infermer">Infermer</option>
+            </select>
+
+            <button type="submit">Enviar Formulari</button>
+        </form>
+    </div>
+</body>
+</html>

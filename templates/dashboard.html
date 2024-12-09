@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorLife - Pàgina Principal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/fullcalendar.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #388E3C; /* Color verde más oscuro */
+            padding: 10px 20px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header img {
+            height: 50px; /* Imagen más grande */
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .header .user-info {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+        }
+        .header .user-info span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .profile-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container {
+            padding: 20px;
+            margin: auto;
+            max-width: 800px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .calendar {
+            margin: 20px 0;
+        }
+        .reminders, .favorites {
+            margin: 20px 0;
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #388E3C; /* Color verde más oscuro */
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .footer button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+        .chat-messages {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+        .chat-message {
+            display: flex;
+            justify-content: flex-start;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            margin: 5px 0;
+            width: fit-content;
+            max-width: 70%;
+        }
+        .chat-message.self {
+            justify-content: flex-end;
+            background-color: #388E3C;
+            color: white;
+        }
+        .chat-input {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-input input {
+            width: 85%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .chat-input button {
+            background-color: #388E3C;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .chat-input button:hover {
+            background-color: #2c6c31;
+        }
+
+        /* Mejoras para el Chat Social */
+        .chat-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .chat-list li {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            cursor: pointer;
+        }
+
+        .chat-profile-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .timestamp {
+            margin-left: auto;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: [
+                    { id: '1', title: 'Revisió General', start: '2024-12-15', description: 'Visita al metge per revisió general.' },
+                    { id: '2', title: 'Consulta amb Cardiòleg', start: '2024-12-20', description: 'Consulta programada amb el cardiòleg.' },
+                    { id: '3', title: 'Sopar Familiar', start: '2024-12-22', description: 'Sopar amb la família a casa.' }
+                ],
+                eventClick: function(info) {
+                    alert(`Detalls de l'esdeveniment:\n\nTítol: ${info.event.title}\nData: ${info.event.start.toLocaleDateString()}\nDescripció: ${info.event.extendedProps.description}`);
+                }
+            });
+            calendar.render();
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="user-info">
+            <img src="/static/perfil.png" alt="Usuario">
+        </div>
+        <button class="profile-button" onclick="showSection('profile-section')">Perfil</button>
+    </div>
+
+    <!-- Panel Principal -->
+    <div id="main-section" class="section">
+        <div class="container">
+            <h1>Notificació del Formulari</h1>
+            <p>El formulari està correctament verificat. Ara pots utilitzar totes les funcionalitats de SeniorLife!</p>
+
+            <h2>Panel Inicial</h2>
+
+            <div class="calendar">
+                <h3>Calendari</h3>
+                <div id="calendar"></div>
+            </div>
+
+            <div class="reminders">
+                <h3>Recordatoris d'avui</h3>
+                <ul>
+                    <li>Medicament X - Presa matutina</li>
+                    <li>Vitamina B12 - Presa vespertina</li>
+                </ul>
+            </div>
+
+            <div class="favorites">
+                <h3>Paràmetres Favorits</h3>
+                <p>Freqüia Cardíaca: 72 bpm</p>
+                <p>Passos del dia: 5000</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Social -->
+    <div id="social-section" class="section hidden">
+        <div class="container">
+            <h1>Social</h1>
+            <h3>Xats Recents</h3>
+            <ul class="chat-list">
+                <li onclick="openChat('Marta')">
+                    <img src="/static/marta.png" alt="Marta" class="chat-profile-img">
+                    <span>Marta</span>
+                    <span class="timestamp">10:45</span>
+                </li>
+                <li onclick="openChat('Joan')">
+                    <img src="/static/chico.png" alt="Joan" class="chat-profile-img">
+                    <span>Joan</span>
+                    <span class="timestamp">09:30</span>
+                </li>
+            </ul>
+    
+            <h3>Comunitats</h3>
+            <ul class="chat-list">
+                <li onclick="openCommunity('Grup de Suport')">
+                    <img src="/static/comunitat.png" alt="Grup" class="chat-profile-img">
+                    <span>Grup de Suport</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sección de Chat -->
+    <div id="chat-window" class="section hidden">
+        <div class="chat-header">
+            <button onclick="goBackToSocial()">← Tornar</button>
+            <img src="https://via.placeholder.com/40" alt="Chat">
+            <span id="chat-title">Chat</span>
+        </div>
+        <div class="chat-window">
+            <div id="chat-messages" class="chat-messages">
+                <div class="chat-message">
+                    <p>Hola, com estàs?</p>
+                    <span class="timestamp">10:30</span>
+                </div>
+                <div class="chat-message self">
+                    <p>Molt bé, gràcies!</p>
+                    <span class="timestamp">10:32</span>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="message-input" placeholder="Escriu un missatge...">
+                <button onclick="sendMessage()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Explora -->
+    <div id="explore-section" class="section hidden">
+        <div class="container">
+            <h1>Explora</h1>
+            
+            <!-- Datos Personales -->
+            <div class="personal-info">
+                <h2>Dades Personals</h2>
+                <ul>
+                    <li><strong>Nom:</strong> {{ user_data[2] }} {{ user_data[3] }}</li>
+                    <li><strong>Sexe:</strong> {{ user_data[9] }} </li>
+                    <li><strong>Data de Naixement:</strong> {{ user_data[10] }}</li>
+                    <li><strong>DNI:</strong> {{ user_data[6] }}</li>
+                    <li><strong>Telèfon:</strong> {{ user_data[7] }}</li>
+                    <li><strong>Adreça:</strong> {{ user_data[8] }}</li>
+                    <li><strong>Grup Sanguini:</strong> O+</li>
+                </ul>
+            </div>
+    
+            <!-- Wearable -->
+            <div class="wearable-info" style="margin-top: 20px;">
+                <h2>Wearable: FitPro</h2>
+                <p><strong>Descripció:</strong> Dispositiu per monitorar la salut.</p>
+                <p><strong>Ubicació:</strong> Canell</p>
+                <h3>Paràmetres</h3>
+                <ul>
+                    <li><strong>Freqüència Cardíaca:</strong> Rang: 60-100 bpm</li>
+                    <li><strong>Passos:</strong> Rang: 0-10,000</li>
+                    <li><strong>Nivell d'Oxigen:</strong> Rang: 95%-100%</li>
+                </ul>
+            </div>
+    
+            <!-- Medicacions -->
+            <div class="medications" style="margin-top: 20px;">
+                <h2>Medicacions</h2>
+                <ul>
+                    <li><strong>Paracetamol:</strong> Per al dolor lleu. <em>(Properes Preses: 15/03/2023)</em></li>
+                </ul>
+            </div>
+    
+            <!-- Historial Mèdic -->
+            <div class="medical-history" style="margin-top: 20px;">
+                <h2>Historial Mèdic</h2>
+                <p><strong>Últim registre:</strong> Historial inicial.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección Perfil -->
+    <div id="profile-section" class="section hidden">
+        <div class="container">
+            <h1>Perfil</h1>
+            <h3>Datos del Usuario</h3>
+            <ul>
+                <li><strong>Nombre:</strong> {{ user_data[2] }} {{ user_data[3] }}</li> <!-- Nombre completo -->
+                <li><strong>Email:</strong> {{ user_data[4] }}</li> <!-- Correo electrónico -->
+                <li><strong>Teléfono:</strong> {{ user_data[7] }}</li> <!-- Teléfono -->
+                <li><strong>DNI:</strong> {{ user_data[6] }}</li> <!-- DNI -->
+                <li><strong>Dirección:</strong> {{ user_data[8] }}</li> <!-- Dirección -->
+                <li><strong>Sexo:</strong> {{ user_data[9] }}</li> <!-- Sexo -->
+                <li><strong>Fecha de Nacimiento:</strong> {{ user_data[10] }}</li> <!-- Fecha de nacimiento -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <button onclick="showSection('main-section')">Inici</button>
+        <button onclick="showSection('social-section')">Social</button>
+        <button onclick="showSection('explore-section')">Explora</button>
+    </div>
+
+</body>
+</html>
+
+<script>
+    function showSection(section) {
+        document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
+        document.getElementById(section).classList.remove('hidden');
+    }
+
+    function openChat(chatName) {
+        document.getElementById('chat-title').innerText = chatName;
+        showSection('chat-window');
+    }
+
+    function openCommunity(communityName) {
+        document.getElementById('community-title').innerText = communityName;
+        showSection('community-window');
+    }
+
+    function goBackToSocial() {
+        showSection('social-section');
+    }
+
+    function sendMessage() {
+        const messageInput = document.getElementById('message-input');
+        const messageText = messageInput.value.trim();
+        if (messageText) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', 'self');
+            messageElement.innerHTML = `<p>${messageText}</p><span class="timestamp">${new Date().toLocaleTimeString()}</span>`;
+            messagesContainer.appendChild(messageElement);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            messageInput.value = '';
+        }
+    }
+</script>

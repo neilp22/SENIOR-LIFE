@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorLife - Página Principal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eaf4ff;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto;
+            width: 120px;
+            height: auto;
+        }
+        .main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+            text-align: center;
+        }
+        .main img {
+            width: 200px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+        }
+        .main h1 {
+            color: #4CAF50;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .main button {
+            background-color: #FFA500;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 15px 40px;
+            margin: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .main button:hover {
+            background-color: #FF8C00;
+            transform: scale(1.05);
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: relative;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/static/logo.png" alt="Senior Life Logo" class="logo">
+        <h1>Bienvenido a SeniorLife</h1>
+    </div>
+    <div class="main">
+        <img src="/static/users_image.png" alt="Imagen Representativa">
+        <h1>Conéctate con nosotros para mejorar tu experiencia</h1>
+        <button onclick="window.location.href='/register_user'">Registrar-se</button>
+        <button onclick="window.location.href='/login'">Iniciar Sessió</button>
+    </div>
+    <div class="footer">
+        &copy; 2024 SeniorLife - Todos los derechos reservados.
+    </div>
+</body>
+</html>
