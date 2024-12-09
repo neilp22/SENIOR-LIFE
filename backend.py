@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 app = Flask(__name__)
 app.secret_key = 'seniorlife_secret_key'
 
@@ -216,4 +217,4 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
