@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeniorLife - Pàgina Principal</title>
+    <title>SeniorLife - Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/fullcalendar.min.css">
     <style>
         body {
@@ -16,32 +16,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #388E3C; /* Color verde más oscuro */
+            background-color: #388E3C;
             padding: 10px 20px;
             color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .header img {
-            height: 50px; /* Imagen más grande */
+            height: 50px;
             border-radius: 50%;
-            margin-right: 15px;
-        }
-        .header .user-info {
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
-            justify-content: center;
-        }
-        .header .user-info span {
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .profile-button {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
         }
         .container {
             padding: 20px;
@@ -54,21 +36,12 @@
         h1, h2, h3 {
             color: #333;
         }
-        .calendar {
-            margin: 20px 0;
-        }
-        .reminders, .favorites {
-            margin: 20px 0;
-            background-color: #f1f1f1;
-            padding: 15px;
-            border-radius: 10px;
-        }
         .footer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #388E3C; /* Color verde más oscuro */
+            background-color: #388E3C;
             display: flex;
             justify-content: space-around;
             padding: 10px;
@@ -84,162 +57,173 @@
         .hidden {
             display: none;
         }
-        .chat-messages {
-            max-height: 400px;
-            overflow-y: auto;
-            margin-bottom: 10px;
+        .calendar {
+            margin: 20px 0;
         }
-        .chat-message {
-            display: flex;
-            justify-content: flex-start;
-            padding: 10px;
+        .reminders, .favorites {
+            margin: 20px 0;
             background-color: #f1f1f1;
+            padding: 15px;
             border-radius: 10px;
-            margin: 5px 0;
-            width: fit-content;
-            max-width: 70%;
         }
-        .chat-message.self {
-            justify-content: flex-end;
-            background-color: #388E3C;
-            color: white;
+        /* Modal Styles */
+        #confirmation-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            z-index: 10;
         }
-        .chat-input {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .chat-input input {
-            width: 85%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-        .chat-input button {
+        #confirmation-modal button {
+            margin: 10px;
+            padding: 10px 15px;
             background-color: #388E3C;
             color: white;
             border: none;
-            padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
         }
-        .chat-input button:hover {
+        #confirmation-modal button:hover {
             background-color: #2c6c31;
         }
-
-        /* Mejoras para el Chat Social */
-        .chat-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .chat-list li {
-            display: flex;
-            align-items: center;
-            padding: 10px 0;
-            cursor: pointer;
-        }
-
-        .chat-profile-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .timestamp {
-            margin-left: auto;
-            font-size: 12px;
-            color: #888;
+        #confirmation-modal p {
+            font-size: 16px;
+            color: #555;
         }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const calendarEl = document.getElementById('calendar');
-            const calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                events: [
-                    { id: '1', title: 'Revisió General', start: '2024-12-15', description: 'Visita al metge per revisió general.' },
-                    { id: '2', title: 'Consulta amb Cardiòleg', start: '2024-12-20', description: 'Consulta programada amb el cardiòleg.' },
-                    { id: '3', title: 'Sopar Familiar', start: '2024-12-22', description: 'Sopar amb la família a casa.' }
-                ],
-                eventClick: function(info) {
-                    alert(`Detalls de l'esdeveniment:\n\nTítol: ${info.event.title}\nData: ${info.event.start.toLocaleDateString()}\nDescripció: ${info.event.extendedProps.description}`);
-                }
-            });
-            calendar.render();
-        });
-    </script>
-</head>
 <body>
+    <!-- Header -->
     <div class="header">
-        <div class="user-info">
-            <img src="/static/perfil.png" alt="Usuario">
-        </div>
-        <button class="profile-button" onclick="showSection('profile-section')">Perfil</button>
+        <img src="/static/perfil.png" alt="Usuario">
+        <span>Benvingut, {{ user_data[2] }} {{ user_data[3] }}</span>
     </div>
 
-    <!-- Panel Principal -->
-    <div id="main-section" class="section">
-        <div class="container">
-            <h1>Notificació del Formulari</h1>
-            <p>El formulari està correctament verificat. Ara pots utilitzar totes les funcionalitats de SeniorLife!</p>
+    <!-- Sección Principal -->
+    <div id="main-section" class="container section">
+        <h1>Dashboard Principal</h1>
+        <p>Aquí pots accedir a totes les funcionalitats de SeniorLife.</p>
 
-            <h2>Panel Inicial</h2>
+        <!-- Sección de Calendario -->
+        <div class="calendar">
+            <h3>Calendari</h3>
+            <div id="calendar"></div>
+        </div>
 
-            <div class="calendar">
-                <h3>Calendari</h3>
-                <div id="calendar"></div>
-            </div>
+        <!-- Modal para Confirmar Videoconferencia -->
+        <div id="confirmation-modal" style="display: none;">
+            <h3>Programar Videoconferència</h3>
+            <p>Vols programar una videoconferència per a aquesta data?</p>
+            <p id="selected-date"></p>
+            <button id="confirm-conference-btn">Confirmar</button>
+            <button id="cancel-conference-btn">Cancelar</button>
+        </div>
 
-            <div class="reminders">
-                <h3>Recordatoris d'avui</h3>
-                <ul>
-                    <li>Medicament X - Presa matutina</li>
-                    <li>Vitamina B12 - Presa vespertina</li>
-                </ul>
-            </div>
+        <!-- Sección de Recordatorios -->
+        <div class="reminders">
+            <h3>Recordatoris d'avui</h3>
+            <ul>
+                <li>Medicament X - Presa matutina</li>
+                <li>Vitamina B12 - Presa vespertina</li>
+            </ul>
+        </div>
 
-            <div class="favorites">
-                <h3>Paràmetres Favorits</h3>
-                <p>Freqüia Cardíaca: 72 bpm</p>
-                <p>Passos del dia: 5000</p>
-            </div>
+        <!-- Sección de Parámetros Favoritos -->
+        <div class="favorites">
+            <h3>Paràmetres Favorits</h3>
+            <p>Freqüència Cardíaca: 72 bpm</p>
+            <p>Passos del dia: 5000</p>
+        </div>
+    </div>
+
+    <!-- Sección Perfil -->
+    <div id="profile-section" class="container section hidden">
+        <h1>Perfil</h1>
+        <h3>Dades del Usuari</h3>
+        <ul>
+            <li><strong>Nom:</strong> {{ user_data[2] }} {{ user_data[3] }}</li>
+            <li><strong>Email:</strong> {{ user_data[4] }}</li>
+            <li><strong>Telèfon:</strong> {{ user_data[7] }}</li>
+            <li><strong>DNI:</strong> {{ user_data[6] }}</li>
+            <li><strong>Adreça:</strong> {{ user_data[8] }}</li>
+            <li><strong>Sexe:</strong> {{ user_data[9] }}</li>
+            <li><strong>Data de Naixement:</strong> {{ user_data[10] }}</li>
+        </ul>
+    </div>
+
+    <!-- Sección Explora -->
+    <div id="explore-section" class="container section hidden">
+        <h1>Explora</h1>
+
+        <!-- Datos Personales -->
+        <div class="personal-info">
+            <h2>Dades Personals</h2>
+            <ul>
+                <li><strong>Nom:</strong> {{ user_data[2] }} {{ user_data[3] }}</li>
+                <li><strong>Sexe:</strong> {{ user_data[9] }}</li>
+                <li><strong>Data de Naixement:</strong> {{ user_data[10] }}</li>
+                <li><strong>DNI:</strong> {{ user_data[6] }}</li>
+                <li><strong>Telèfon:</strong> {{ user_data[7] }}</li>
+                <li><strong>Adreça:</strong> {{ user_data[8] }}</li>
+                <li><strong>Grup Sanguini:</strong> O+</li>
+            </ul>
+        </div>
+
+        <!-- Wearable -->
+        <div class="wearable-info" style="margin-top: 20px;">
+            <h2>Wearable: FitPro</h2>
+            <p><strong>Descripció:</strong> Dispositiu per monitorar la salut.</p>
+            <p><strong>Ubicació:</strong> Canell</p>
+            <h3>Paràmetres</h3>
+            <ul>
+                <li><strong>Freqüència Cardíaca:</strong> Rang: 60-100 bpm</li>
+                <li><strong>Passos:</strong> Rang: 0-10,000</li>
+                <li><strong>Nivell d'Oxigen:</strong> Rang: 95%-100%</li>
+            </ul>
+        </div>
+
+        <!-- Medicacions -->
+        <div class="medications" style="margin-top: 20px;">
+            <h2>Medicacions</h2>
+            <ul>
+                <li><strong>Paracetamol:</strong> Per al dolor lleu. <em>(Properes Preses: 15/03/2023)</em></li>
+            </ul>
+        </div>
+
+        <!-- Historial Mèdic -->
+        <div class="medical-history" style="margin-top: 20px;">
+            <h2>Historial Mèdic</h2>
+            <p><strong>Últim registre:</strong> Historial inicial.</p>
         </div>
     </div>
 
     <!-- Sección Social -->
-    <div id="social-section" class="section hidden">
-        <div class="container">
-            <h1>Social</h1>
-            <h3>Xats Recents</h3>
-            <ul class="chat-list">
-                <li onclick="openChat('Marta')">
-                    <img src="/static/marta.png" alt="Marta" class="chat-profile-img">
-                    <span>Marta</span>
-                    <span class="timestamp">10:45</span>
-                </li>
-                <li onclick="openChat('Joan')">
-                    <img src="/static/chico.png" alt="Joan" class="chat-profile-img">
-                    <span>Joan</span>
-                    <span class="timestamp">09:30</span>
-                </li>
-            </ul>
-    
-            <h3>Comunitats</h3>
-            <ul class="chat-list">
-                <li onclick="openCommunity('Grup de Suport')">
-                    <img src="/static/comunitat.png" alt="Grup" class="chat-profile-img">
-                    <span>Grup de Suport</span>
-                </li>
-            </ul>
-        </div>
+    <div id="social-section" class="container section hidden">
+        <h1>Social</h1>
+        <h3>Xats Recents</h3>
+        <ul class="chat-list">
+            <li onclick="openChat('Marta')">
+                <img src="/static/marta.png" alt="Marta" class="chat-profile-img">
+                <span>Marta</span>
+                <span class="timestamp">10:45</span>
+            </li>
+            <li onclick="openChat('Joan')">
+                <img src="/static/chico.png" alt="Joan" class="chat-profile-img">
+                <span>Joan</span>
+                <span class="timestamp">09:30</span>
+            </li>
+        </ul>
+
+        <h3>Comunitats</h3>
+        <ul class="chat-list">
+            <li onclick="openCommunity('Grup de Suport')">
+                <img src="/static/comunitat.png" alt="Grup" class="chat-profile-img">
+                <span>Grup de Suport</span>
+            </li>
+        </ul>
     </div>
 
     <!-- Sección de Chat -->
@@ -267,111 +251,111 @@
         </div>
     </div>
 
-    <!-- Sección Explora -->
-    <div id="explore-section" class="section hidden">
-        <div class="container">
-            <h1>Explora</h1>
-            
-            <!-- Datos Personales -->
-            <div class="personal-info">
-                <h2>Dades Personals</h2>
-                <ul>
-                    <li><strong>Nom:</strong> {{ user_data[2] }} {{ user_data[3] }}</li>
-                    <li><strong>Sexe:</strong> {{ user_data[9] }} </li>
-                    <li><strong>Data de Naixement:</strong> {{ user_data[10] }}</li>
-                    <li><strong>DNI:</strong> {{ user_data[6] }}</li>
-                    <li><strong>Telèfon:</strong> {{ user_data[7] }}</li>
-                    <li><strong>Adreça:</strong> {{ user_data[8] }}</li>
-                    <li><strong>Grup Sanguini:</strong> O+</li>
-                </ul>
-            </div>
-    
-            <!-- Wearable -->
-            <div class="wearable-info" style="margin-top: 20px;">
-                <h2>Wearable: FitPro</h2>
-                <p><strong>Descripció:</strong> Dispositiu per monitorar la salut.</p>
-                <p><strong>Ubicació:</strong> Canell</p>
-                <h3>Paràmetres</h3>
-                <ul>
-                    <li><strong>Freqüència Cardíaca:</strong> Rang: 60-100 bpm</li>
-                    <li><strong>Passos:</strong> Rang: 0-10,000</li>
-                    <li><strong>Nivell d'Oxigen:</strong> Rang: 95%-100%</li>
-                </ul>
-            </div>
-    
-            <!-- Medicacions -->
-            <div class="medications" style="margin-top: 20px;">
-                <h2>Medicacions</h2>
-                <ul>
-                    <li><strong>Paracetamol:</strong> Per al dolor lleu. <em>(Properes Preses: 15/03/2023)</em></li>
-                </ul>
-            </div>
-    
-            <!-- Historial Mèdic -->
-            <div class="medical-history" style="margin-top: 20px;">
-                <h2>Historial Mèdic</h2>
-                <p><strong>Últim registre:</strong> Historial inicial.</p>
-            </div>
-        </div>
+    <!-- Modal para Confirmar Videoconferencia -->
+    <div id="confirmation-modal" style="display: none;">
+        <h3>Programar Videoconferència</h3>
+        <p>Vols programar una videoconferència per a aquesta data?</p>
+        <p id="selected-date"></p>
+        <button id="confirm-conference-btn">Confirmar</button>
+        <button id="cancel-conference-btn">Cancelar</button>
     </div>
 
-    <!-- Sección Perfil -->
-    <div id="profile-section" class="section hidden">
-        <div class="container">
-            <h1>Perfil</h1>
-            <h3>Datos del Usuario</h3>
-            <ul>
-                <li><strong>Nombre:</strong> {{ user_data[2] }} {{ user_data[3] }}</li> <!-- Nombre completo -->
-                <li><strong>Email:</strong> {{ user_data[4] }}</li> <!-- Correo electrónico -->
-                <li><strong>Teléfono:</strong> {{ user_data[7] }}</li> <!-- Teléfono -->
-                <li><strong>DNI:</strong> {{ user_data[6] }}</li> <!-- DNI -->
-                <li><strong>Dirección:</strong> {{ user_data[8] }}</li> <!-- Dirección -->
-                <li><strong>Sexo:</strong> {{ user_data[9] }}</li> <!-- Sexo -->
-                <li><strong>Fecha de Nacimiento:</strong> {{ user_data[10] }}</li> <!-- Fecha de nacimiento -->
-            </ul>
-        </div>
-    </div>
-
+    <!-- Footer -->
     <div class="footer">
         <button onclick="showSection('main-section')">Inici</button>
         <button onclick="showSection('social-section')">Social</button>
         <button onclick="showSection('explore-section')">Explora</button>
+        <button onclick="showSection('profile-section')">Perfil</button>
     </div>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.8/index.global.min.js"></script>
+    <script src="https://meet.jit.si/external_api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inicialización del calendario
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                selectable: true,
+                events: [
+                    { id: '1', title: 'Revisió General', start: '2024-12-15', description: 'Visita al metge.' },
+                    { id: '2', title: 'Consulta amb Cardiòleg', start: '2024-12-20', description: 'Consulta amb el cardiòleg.' }
+                ],
+                dateClick: function (info) {
+                    document.getElementById('selected-date').innerText = `Data seleccionada: ${info.dateStr}`;
+                    document.getElementById('confirmation-modal').style.display = 'block';
+                }
+            });
+            calendar.render();
+
+            // Manejo de la confirmación de videoconferencia
+            document.getElementById('confirm-conference-btn').addEventListener('click', async function () {
+                const selectedDate = document.getElementById('selected-date').innerText.split(": ")[1];
+
+                // Llamada al backend para crear la conferencia
+                const response = await fetch('/create-conference', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ date: selectedDate, userName: "{{ user_data[2] }} {{ user_data[3] }}" })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const { roomName, userName } = data;
+
+                    // Ocultar el modal y mostrar la videoconferencia
+                    document.getElementById('confirmation-modal').style.display = 'none';
+
+                    const domain = "meet.jit.si";
+                    const options = {
+                        roomName: roomName,
+                        width: "100%",
+                        height: 500,
+                        parentNode: calendarEl,
+                        userInfo: { displayName: userName }
+                    };
+                    new JitsiMeetExternalAPI(domain, options);
+                } else {
+                    alert("Error al programar la videoconferència.");
+                }
+            });
+
+            // Cancelar la videoconferencia
+            document.getElementById('cancel-conference-btn').addEventListener('click', function () {
+                document.getElementById('confirmation-modal').style.display = 'none';
+            });
+        });
+
+        // Funciones de navegación entre secciones
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => section.classList.add('hidden'));
+            document.getElementById(sectionId).classList.remove('hidden');
+        }
+
+        // Funciones adicionales para el chat
+        function openChat(chatName) {
+            document.getElementById('chat-title').innerText = chatName;
+            showSection('chat-window');
+        }
+
+        function goBackToSocial() {
+            showSection('social-section');
+        }
+
+        function sendMessage() {
+            const messageInput = document.getElementById('message-input');
+            const messageText = messageInput.value.trim();
+            if (messageText) {
+                const messagesContainer = document.getElementById('chat-messages');
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('chat-message', 'self');
+                messageElement.innerHTML = `<p>${messageText}</p><span class="timestamp">${new Date().toLocaleTimeString()}</span>`;
+                messagesContainer.appendChild(messageElement);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+                messageInput.value = '';
+            }
+        }
+    </script>
 </body>
 </html>
-
-<script>
-    function showSection(section) {
-        document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));
-        document.getElementById(section).classList.remove('hidden');
-    }
-
-    function openChat(chatName) {
-        document.getElementById('chat-title').innerText = chatName;
-        showSection('chat-window');
-    }
-
-    function openCommunity(communityName) {
-        document.getElementById('community-title').innerText = communityName;
-        showSection('community-window');
-    }
-
-    function goBackToSocial() {
-        showSection('social-section');
-    }
-
-    function sendMessage() {
-        const messageInput = document.getElementById('message-input');
-        const messageText = messageInput.value.trim();
-        if (messageText) {
-            const messagesContainer = document.getElementById('chat-messages');
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('chat-message', 'self');
-            messageElement.innerHTML = `<p>${messageText}</p><span class="timestamp">${new Date().toLocaleTimeString()}</span>`;
-            messagesContainer.appendChild(messageElement);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            messageInput.value = '';
-        }
-    }
-</script>

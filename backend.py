@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash,jsonify
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
+import uuid
 
 app = Flask(__name__)
 app.secret_key = 'seniorlife_secret_key'
@@ -214,5 +215,28 @@ def logout():
     flash('Has cerrado sesión exitosamente.', 'success')
     return redirect(url_for('index.html'))
 
+
+
+# Ruta para crear una videoconferencia
+@app.route('/create-conference', methods=['POST'])
+def create_conference():
+    data = request.json
+    selected_date = data.get('date')
+    user_name = data.get('userName', 'Usuario SeniorLife')
+
+    # Generar un nombre único para la sala, incluyendo la fecha seleccionada
+    room_name = f"SeniorLife_{selected_date}_{uuid.uuid4().hex[:8]}"
+
+    # Opcional: guardar la programación en una base de datos
+    # db.save_conference(user_name, selected_date, room_name)
+
+    return jsonify({
+        "roomName": room_name,
+        "userName": user_name
+    })
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(debug=True)
+
+
+

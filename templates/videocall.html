@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorLife - Videoconferencia</title>
+    <script src="https://meet.jit.si/external_api.js"></script>
+    <style>
+        #video-conference {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>SeniorLife - Videoconferencia</h1>
+    <button id="start-conference-btn">Iniciar Conferencia</button>
+    <div id="video-conference"></div>
+
+    <script>
+        async function startVideoConference() {
+            // Llama al backend para obtener el nombre de la sala
+            const response = await fetch('/create-conference', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userName: "Usuario SeniorLife" }) // Cambiar según el nombre del usuario
+            });
+
+            const data = await response.json();
+            const { roomName, userName } = data;
+
+            // Configuración de Jitsi
+            const domain = "meet.jit.si"; // Dominio público de Jitsi
+            const options = {
+                roomName: roomName,
+                width: "100%",
+                height: 500,
+                parentNode: document.getElementById("video-conference"),
+                userInfo: {
+                    displayName: userName,
+                },
+            };
+            const api = new JitsiMeetExternalAPI(domain, options);
+        }
+
+        document.getElementById("start-conference-btn").addEventListener("click", startVideoConference);
+    </script>
+</body>
+</html>
