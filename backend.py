@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 
-
 app = Flask(__name__)
 app.secret_key = 'seniorlife_secret_key'
 
@@ -111,7 +110,6 @@ def dashboard():
     cursor.execute("SELECT * FROM usuarios WHERE id = ?", (user_id,))
     user_data = cursor.fetchone()
 
-
     # Cerrar la conexión
     conn.close()
 
@@ -122,7 +120,7 @@ def dashboard():
         flash('Error al cargar los datos del usuario.', 'error')
         return redirect(url_for('login'))
 
-
+# Ruta de registro
 # Ruta de registro
 @app.route('/register_user', methods=['GET', 'POST'])
 def register():
@@ -137,10 +135,11 @@ def register():
         elif user_type == 'professional':
             save_professional(request.form)
 
-        flash('Registro completado con éxito', 'success')
-        return redirect(url_for('register'))
-
+        flash('Registro completado con éxito', 'success')  # Mensaje de éxito
+        return redirect(url_for('index'))  # Redirigir al índice después de completar el registro
     return render_template('register_user.html')
+
+
 
 def save_patient(form_data):
     conn = sqlite3.connect('database/data.sqlite')
@@ -207,14 +206,13 @@ def save_professional(form_data):
                     form_data['professional-assistencia'] == 'si', form_data['professional-rol']))
     conn.commit()
     conn.close()
-    return redirect(url_for('index'))
 
 # Ruta para cerrar sesión
 @app.route('/logout')
 def logout():
     session.clear()
     flash('Has cerrado sesión exitosamente.', 'success')
-    return redirect(url_for('index'))
+    return redirect(url_for('index.html'))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000, debug=True)
