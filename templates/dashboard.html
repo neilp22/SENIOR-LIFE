@@ -206,12 +206,12 @@
         <h3>Xats Recents</h3>
         <ul class="chat-list">
             <li onclick="openChat('Marta')">
-                <img src="/static/marta.png" alt="Marta" class="chat-profile-img">
+                <img src="/static/marta.png" alt="Marta" style="width:40px; height:auto;">
                 <span>Marta</span>
                 <span class="timestamp">10:45</span>
             </li>
             <li onclick="openChat('Joan')">
-                <img src="/static/chico.png" alt="Joan" class="chat-profile-img">
+                <img src="/static/chico.png" alt="Joan"style="width:40px; height:auto;">
                 <span>Joan</span>
                 <span class="timestamp">09:30</span>
             </li>
@@ -220,7 +220,7 @@
         <h3>Comunitats</h3>
         <ul class="chat-list">
             <li onclick="openCommunity('Grup de Suport')">
-                <img src="/static/comunitat.png" alt="Grup" class="chat-profile-img">
+                <img src="/static/comunitat.png" alt="Grup" style="width:40px; height:auto;">
                 <span>Grup de Suport</span>
             </li>
         </ul>
@@ -230,7 +230,7 @@
     <div id="chat-window" class="section hidden">
         <div class="chat-header">
             <button onclick="goBackToSocial()">← Tornar</button>
-            <img src="https://via.placeholder.com/40" alt="Chat">
+            <img src="/static/chat.png" alt="Chat" style="width:30px; height:auto;">
             <span id="chat-title">Chat</span>
         </div>
         <div class="chat-window">
@@ -265,7 +265,6 @@
         <button onclick="showSection('main-section')">Inici</button>
         <button onclick="showSection('social-section')">Social</button>
         <button onclick="showSection('explore-section')">Explora</button>
-        <button onclick="showSection('profile-section')">Perfil</button>
     </div>
 
     <!-- Scripts -->
