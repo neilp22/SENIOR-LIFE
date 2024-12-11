@@ -6,7 +6,7 @@ import uuid
 app = Flask(__name__)
 app.secret_key = 'seniorlife_secret_key'
 
-# Inicializar base de datos
+# Inicializar baxse de datos
 def init_db():
     conn = sqlite3.connect('database/data.sqlite')
     cursor = conn.cursor()
