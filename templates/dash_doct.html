@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorLife - Dashboard Doctor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            background-color: #333;
+            color: white;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Dashboard - Doctor</h1>
+    </div>
+    <div class="sidebar">
+        <a href="#">Inicio</a>
+        <a href="#pacientes">Pacientes</a>
+        <a href="#alertas">Alertas</a>
+        <a href="#videollamadas">Videollamadas</a>
+        <a href="#configuracion">Configuración</a>
+        <a href="#logout">Cerrar Sesión</a>
+    </div>
+    <div class="main-content">
+        <div class="card">
+            <h2>Pacientes Asignados</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Edad</th>
+                        <th>Estado</th>
+                        <th>Última Actividad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Juan Pérez</td>
+                        <td>78</td>
+                        <td>Estable</td>
+                        <td>10/12/2024</td>
+                        <td><button>Ver Detalles</button></td>
+                    </tr>
+                    <tr>
+                        <td>María López</td>
+                        <td>82</td>
+                        <td>Monitorización Requerida</td>
+                        <td>09/12/2024</td>
+                        <td><button>Ver Detalles</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>Alertas Recientes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Paciente</th>
+                        <th>Tipo de Alerta</th>
+                        <th>Nivel de Riesgo</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Juan Pérez</td>
+                        <td>Fiebre Alta</td>
+                        <td>Alta</td>
+                        <td>10/12/2024</td>
+                        <td><button>Ver Alerta</button></td>
+                    </tr>
+                    <tr>
+                        <td>María López</td>
+                        <td>Caída Detectada</td>
+                        <td>Media</td>
+                        <td>09/12/2024</td>
+                        <td><button>Ver Alerta</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

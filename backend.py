@@ -89,6 +89,7 @@ def login():
         if user and check_password_hash(user[5], password):  # user[5] es la columna de contraseña
             session['user_id'] = user[0]
             session['user_name'] = f"{user[2]} {user[3]}"  # user[2]: nombre, user[3]: apellidos
+            session['user_type'] = user[1]
             flash('Inicio de sesión exitoso', 'success')
             return redirect(url_for('dashboard'))
         else:
@@ -112,16 +113,22 @@ def dashboard():
     user_data = cursor.fetchone()
 
     # Cerrar la conexión
+
+    user_type = session.get('user_type')
+
     conn.close()
-
-    if user_data:
-        # Pasar los datos del usuario y los eventos a la plantilla
-        return render_template('dashboard.html', user_data=user_data)
+    if user_type == 'profesional':
+        return render_template('dash_doct.html',user_data=user_data)
+    elif user_type == 'familiar':
+        return render_template('dash_fam.html',user_data=user_data)
+    elif user_type == 'paciente':
+        return render_template('dashboard.html',user_data=user_data)
     else:
-        flash('Error al cargar los datos del usuario.', 'error')
+        flash('Error al determinar el tipo de usuario.', 'error')
         return redirect(url_for('login'))
+    
 
-# Ruta de registro
+
 # Ruta de registro
 @app.route('/register_user', methods=['GET', 'POST'])
 def register():
