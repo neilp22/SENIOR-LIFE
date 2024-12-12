@@ -12,7 +12,7 @@
             background-color: #f4f4f4;
         }
         .header {
-            background-color: #262698;
+            background-color: #1e1e78;
             color: white;
             padding: 20px;
             text-align: center;
@@ -46,7 +46,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         h2 {
-            color: #262698;
+            color: #1e1e78;
         }
         table {
             width: 100%;
@@ -61,7 +61,7 @@
             text-align: left;
         }
         th {
-            background-color: #262698;
+            background-color: #1e1e78;
             color: white;
         }
 
@@ -89,7 +89,7 @@
         padding: 6px 12px;
         text-decoration: none;
         color: white;
-        background-color: #262698;
+        background-color: #1e1e78;
         border-radius: 4px;
         text-align: center;
         }
@@ -97,15 +97,20 @@
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Dashboard - Doctor</h1>
+
+    <div class="header" style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background-color: #2C3E50; color: white;">
+    <img src="/static/logo.png" alt="Logo" style="width: 100px; height: 100px; margin-right: 10px;">
+    <h1 style="margin: 0; flex-grow: 1;">Dashboard - Doctor</h1>
     </div>
+
+    
     <div class="sidebar">
         <a href="#">Inicio</a>
         <a href="#pacientes">Pacientes</a>
         <a href="#alertas">Alertas</a>
         <a href="/video_ref" class="sidebar-button">Ir a Videollamadas</a>
-        <a href="#configuracion">Configuración</a>
+        <a href="#Chats social">Chats social</a>
+        <a href="#Configuración">Configuración</a>
         <a href="/" class="sidebar-button">Cerrar Session</a>
     </div>
     <div class="main-content">
@@ -164,14 +169,14 @@
                         <td>Fiebre Alta</td>
                         <td>Alta</td>
                         <td>10/12/2024</td>
-                        <td><button>Ver Alerta</button></td>
+                        <td><a href="/alerta" class="button">Ver Alerta</a></td>
                     </tr>
                     <tr>
                         <td>María López</td>
                         <td>Caída Detectada</td>
                         <td>Media</td>
                         <td>09/12/2024</td>
-                        <td><button>Ver Alerta</button></td>
+                        <td><a href="/alerta2" class="button">Ver Alerta</a></td>
                     </tr>
                 </tbody>
             </table>

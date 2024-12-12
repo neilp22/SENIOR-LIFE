@@ -242,6 +242,14 @@ def create_conference():
 def doctor():
     return render_template('dash_doct.html')
 
+@app.route('/alerta')
+def alerta():
+    return render_template('alerta.html')
+
+@app.route('/alerta2')
+def alerta2():
+    return render_template('alerta2.html')
+
 @app.route('/iot')
 def iotenvivo():
     return render_template('iot.html')
