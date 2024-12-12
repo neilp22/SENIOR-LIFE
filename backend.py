@@ -246,6 +246,18 @@ def doctor():
 def alerta():
     return render_template('alerta.html')
 
+@app.route('/chats_doctor')
+def chats_doctor():
+    return render_template('doctor_chats.html')
+
+@app.route('/config')
+def config():
+    return render_template('configuracion.html')
+
+@app.route('/historial_alerta')
+def hist_alerta():
+    return render_template('historial_alerta.html')
+
 @app.route('/alerta2')
 def alerta2():
     return render_template('alerta2.html')

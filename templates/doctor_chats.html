@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Chats</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-header {
+            background-color: #2C3E50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .chat-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .chat-card {
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .chat-card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .chat-card h3 {
+            margin: 0 0 10px;
+            font-size: 1.2em;
+            color: #2C3E50;
+        }
+
+        .chat-card p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        .chat-container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background-color: #2C3E50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .chat-main {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            height: 400px;
+        }
+
+        .chat-message {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 1em;
+        }
+
+        .chat-message.doctor {
+            background-color: #3498DB;
+            color: white;
+            align-self: flex-end;
+        }
+
+        .chat-message.patient {
+            background-color: #ecf0f1;
+            color: #333;
+            align-self: flex-start;
+        }
+
+        .chat-footer {
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .send-button {
+            padding: 10px 20px;
+            background-color: #3498DB;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .send-button:hover {
+            background-color: #2980B9;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">Dashboard de Chats</div>
+        <div style="text-align: center; margin-top: 10px;">
+            <a href="/doctor" style="text-decoration: none;">
+                <button style="background: white; color: #1e88e5; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); transition: background 0.3s;">
+                    Atrás
+                </button>
+            </a>
+        </div>
+        <div class="chat-list">
+            <div class="chat-card" onclick="openChat('Carlos Mendoza', 'Hola doctor, necesito ayuda con...')">
+                <h3>Carlos Mendoza</h3>
+                <p>Último mensaje: Hola doctor, necesito ayuda con...</p>
+            </div>
+            <div class="chat-card" onclick="openChat('Laura García', 'Muchas gracias por la consulta de hoy. Me siento mejor.')">
+                <h3>Laura García</h3>
+                <p>Último mensaje: Muchas gracias por la consulta...</p>
+            </div>
+            <div class="chat-card" onclick="openChat('Grupo: Cardiología', 'Recordatorio de la reunión del viernes. Por favor, confirmen asistencia.')">
+                <h3>Grupo: Cardiología</h3>
+                <p>Último mensaje: Recordatorio de la reunión del viernes...</p>
+            </div>
+            <div class="chat-card" onclick="openChat('María López', 'Estoy mejor, gracias por la medicación recetada.')">
+                <h3>María López</h3>
+                <p>Último mensaje: Estoy mejor, gracias por la medicación...</p>
+            </div>
+            <div class="chat-card" onclick="openChat('Pedro Martínez', 'Doctor, tengo una duda sobre mis síntomas recientes.')">
+                <h3>Pedro Martínez</h3>
+                <p>Último mensaje: Doctor, tengo una duda sobre mis síntomas...</p>
+            </div>
+            <div class="chat-card" onclick="openChat('Ana Torres', 'Doctor, los resultados del examen fueron positivos.')">
+                <h3>Ana Torres</h3>
+                <p>Último mensaje: Doctor, los resultados del examen fueron...</p>
+            </div>
+            <div class="chat-card" onclick="openChat('Grupo: Pediatría', 'No olviden las vacunas programadas para esta semana.')">
+                <h3>Grupo: Pediatría</h3>
+                <p>Último mensaje: No olviden las vacunas para...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-container" id="chatContainer">
+        <div class="chat-header" id="chatHeader">Chat</div>
+        <div class="chat-main" id="chatMain"></div>
+        <div class="chat-footer">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Escribe un mensaje...">
+            <button class="send-button" onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        const chatData = {
+            'Carlos Mendoza': [
+                { sender: 'patient', message: 'Hola doctor, necesito ayuda con mi tratamiento.' },
+                { sender: 'doctor', message: 'Claro, ¿podrías darme más detalles sobre cómo te sientes?' },
+                { sender: 'patient', message: 'Me siento mareado y sin energía últimamente.' }
+            ],
+            'Laura García': [
+                { sender: 'patient', message: 'Muchas gracias por la consulta de hoy. Me siento mejor.' },
+                { sender: 'doctor', message: '¡Me alegra mucho saberlo! No olvides seguir las recomendaciones.' }
+            ],
+            'Grupo: Cardiología': [
+                { sender: 'doctor', message: 'Recordatorio de la reunión del viernes. Por favor, confirmen asistencia.' },
+                { sender: 'patient', message: 'Confirmo mi asistencia. Gracias.' }
+            ],
+            'María López': [
+                { sender: 'patient', message: 'Estoy mejor, gracias por la medicación recetada.' },
+                { sender: 'doctor', message: '¡Excelente! Avísame si necesitas algo más.' }
+            ],
+            'Pedro Martínez': [
+                { sender: 'patient', message: 'Doctor, tengo una duda sobre mis síntomas recientes.' },
+                { sender: 'doctor', message: 'Claro, Pedro. Dime cómo puedo ayudarte.' }
+            ],
+            'Ana Torres': [
+                { sender: 'patient', message: 'Doctor, los resultados del examen fueron positivos.' },
+                { sender: 'doctor', message: 'Gracias por informarme, Ana. Revisaremos los siguientes pasos juntos.' }
+            ],
+            'Grupo: Pediatría': [
+                { sender: 'doctor', message: 'No olviden las vacunas programadas para esta semana.' },
+                { sender: 'patient', message: 'Gracias, estaremos allí.' }
+            ]
+        };
+
+        function openChat(name, preview) {
+            const chatContainer = document.getElementById('chatContainer');
+            const chatHeader = document.getElementById('chatHeader');
+            const chatMain = document.getElementById('chatMain');
+
+            chatHeader.textContent = name;
+            chatMain.innerHTML = '';
+
+            if (chatData[name]) {
+                chatData[name].forEach(chat => {
+                    const message = document.createElement('div');
+                    message.classList.add('chat-message', chat.sender === 'doctor' ? 'doctor' : 'patient');
+                    message.textContent = chat.message;
+                    chatMain.appendChild(message);
+                });
+            }
+
+            chatContainer.style.display = 'flex';
+        }
+
+        function sendMessage() {
+            const chatMain = document.getElementById('chatMain');
+            const chatInput = document.getElementById('chatInput');
+
+            if (chatInput.value.trim() !== '') {
+                const newMessage = document.createElement('div');
+                newMessage.classList.add('chat-message', 'doctor');
+                newMessage.textContent = chatInput.value;
+                chatMain.appendChild(newMessage);
+                chatMain.scrollTop = chatMain.scrollHeight;
+                chatInput.value = '';
+            }
+        }
+    </script>
+</body>
+</html>

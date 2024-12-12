@@ -109,18 +109,24 @@
 <body>
 
     <div class="header" style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background-color: #2C3E50; color: white;">
-    <img src="/static/logo.png" alt="Logo" style="width: 100px; height: 100px; margin-right: 10px;">
-    <h1 style="margin: 0; flex-grow: 1;">Dashboard - Doctor</h1>
+        <img src="/static/logo.png" alt="Logo" style="width: 100px; height: 100px; margin-right: 10px;">
+        <h1 style="margin: 0; flex-grow: 1; text-align: center;">Dashboard - Doctor</h1>
+        <div style="display: flex; align-items: center; margin-left: auto; position: absolute; right: 10px; top: 10px;">
+            <img src="/static/foto_doctor.png" alt="Doctor" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 10px;">
+            <span style="white-space: nowrap;">Dr. Neil Pradas  ‍‍‍‍‍‍ ‍‍   ‍‍‍‍‍‍ ‍‍   ‍‍‍‍‍‍ ‍‍   ‍‍‍‍‍‍ ‍‍    </span>
+        </div>
     </div>
+    
+    
+    
 
     
     <div class="sidebar">
         <a href="#">Inicio</a>
-        <a href="#pacientes">Pacientes</a>
-        <a href="#alertas">Alertas</a>
+        <a href="/historial_alerta" class="sidebar-button">Alertas</a>
         <a href="/video_ref" class="sidebar-button">Ir a Videollamadas</a>
-        <a href="#Chats social">Chats social</a>
-        <a href="#Configuración">Configuración</a>
+        <a href="/chats_doctor" class="sidebar-button">Chats Doctor</a>
+        <a href="/config" class="sidebar-button">Configuración</a>
         <a href="/" class="sidebar-button">Cerrar Session</a>
     </div>
     <div class="main-content">
@@ -140,26 +146,109 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Juan Pérez</td>
-                        <td>78</td>
-                        <td>5789033N</td>
-                        <td>Estable</td>
-                        <td>10/12/2024</td>
-                        <td>258C</td>
-                        <td><a href="/perfil_medico" class="button">Ver</a></td>
-                        <td><a href="/iot" class="button">Mostrar Constantes</a></td>
-                    </tr>
-                    <tr>
-                        <td>María López</td>
-                        <td>82</td>
-                        <td>47890119</td>
-                        <td>Monitorización Requerida</td>
-                        <td>09/12/2024</td>
-                        <td>455A</td>
-                        <td><a href="/perfil_medico2" class="button">Ver</a></td>
-                        <td><a href="/iot2" class="button">Mostrar Constantes</a></td>
-                    </tr>
+                <tr>
+                    <td>Juan Pérez</td>
+                    <td>78</td>
+                    <td>5789033N</td>
+                    <td>Estable</td>
+                    <td>10/12/2024</td>
+                    <td>258C</td>
+                    <td><a href="/perfil_medico" class="button">Ver</a></td>
+                    <td><a href="/iot" class="button">Mostrar Constantes</a></td>
+                </tr>
+                <tr>
+                    <td>María López</td>
+                    <td>82</td>
+                    <td>47890119</td>
+                    <td>Monitorización Requerida</td>
+                    <td>09/12/2024</td>
+                    <td>455A</td>
+                    <td><a href="/perfil_medico2" class="button">Ver</a></td>
+                    <td><a href="/iot2" class="button">Mostrar Constantes</a></td>
+                </tr>
+                <tr>
+                    <td>Pedro Gómez</td>
+                    <td>65</td>
+                    <td>3487023L</td>
+                    <td>Recuperación</td>
+                    <td>08/12/2024</td>
+                    <td>112D</td>
+                    <td><a href="/perfil_medico3" class="button">Ver</a></td>
+                    <td><a href="/iot3" class="button">Mostrar Constantes</a></td>
+                </tr>
+                <tr>
+                    <td>Ana Sánchez</td>
+                    <td>74</td>
+                    <td>2893048M</td>
+                    <td>Estable</td>
+                    <td>07/12/2024</td>
+                    <td>334B</td>
+                    <td><a href="/perfil_medico4" class="button">Ver</a></td>
+                    <td><a href="/iot4" class="button">Mostrar Constantes</a></td>
+                </tr>
+                <tr>
+                    <td>Carlos Ruiz</td>
+                    <td>80</td>
+                    <td>5702904Q</td>
+                    <td>Alta Pronta</td>
+                    <td>06/12/2024</td>
+                    <td>777C</td>
+                    <td><a href="/perfil_medico5" class="button">Ver</a></td>
+                    <td><a href="/iot5" class="button">Mostrar Constantes</a></td>
+                </tr>
+                <tr>
+                    <td>Lucía Martínez</td>
+                    <td>68</td>
+                    <td>4782048P</td>
+                    <td>En Observación</td>
+                    <td>05/12/2024</td>
+                    <td>299A</td>
+                    <td><a href="/perfil_medico6" class="button">Ver</a></td>
+                    <td><a href="/iot6" class="button">Mostrar Constantes</a></td>
+                </tr>
+                <tr>
+                    <td>Jorge Fernández</td>
+                    <td>76</td>
+                    <td>5019028K</td>
+                    <td>Estable</td>
+                    <td>04/12/2024</td>
+                    <td>128D</td>
+                    <td><a href="/perfil_medico7" class="button">Ver</a></td>
+                    <td><a href="/iot7" class="button">Mostrar Constantes</a></td>
+                </tr>
+                <tr>
+                    <td>Elena Torres</td>
+                    <td>70</td>
+                    <td>4692038T</td>
+                    <td>Recuperación</td>
+                    <td>03/12/2024</td>
+                    <td>544B</td>
+                    <td><a href="/perfil_medico8" class="button">Ver</a></td>
+                    <td><a href="/iot8" class="button">Mostrar Constantes</a></td>
+                </tr>
+                <tr>
+                    <td>Francisco Morales</td>
+                    <td>72</td>
+                    <td>2894019R</td>
+                    <td>Alta Pronta</td>
+                    <td>02/12/2024</td>
+                    <td>633C</td>
+                    <td><a href="/perfil_medico9" class="button">Ver</a></td>
+                    <td><a href="/iot9" class="button">Mostrar Constantes</a></td>
+                </tr>
+                <tr>
+                    <td>Isabel Pérez</td>
+                    <td>79</td>
+                    <td>6704028L</td>
+                    <td>Monitorización Requerida</td>
+                    <td>01/12/2024</td>
+                    <td>900A</td>
+                    <td><a href="/perfil_medico10" class="button">Ver</a></td>
+                    <td><a href="/iot10" class="button">Mostrar Constantes</a></td>
+                </tr>
+
+
+
                 </tbody>
             </table>
         </div>

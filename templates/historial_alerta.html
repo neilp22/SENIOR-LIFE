@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Alertas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            background-color: #2C3E50;
+            color: white;
+            padding: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #2C3E50;
+            color: white;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #3498DB;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980B9;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Historial de Alertas</h1>
+        <a href="/doctor" style="text-decoration: none;">
+            <button style="background: white; color: #0b243a; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); transition: background 0.3s;">
+                Atrás
+            </button>
+        </a>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha y Hora</th>
+                <th>Paciente</th>
+                <th>Evento Detectado</th>
+                <th>Nivel Crítico</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>12/12/2024 15:45</td><td>Sofía Martínez</td><td>Presión arterial alta</td><td>160/100 mmHg</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>12/12/2024 14:30</td><td>Daniel Fernández</td><td>Hipoglucemia</td><td>55 mg/dL</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>12/12/2024 13:15</td><td>Lucía Gómez</td><td>Fiebre alta</td><td>39.8°C</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>12/12/2024 11:00</td><td>Gabriel López</td><td>Ritmo cardíaco irregular</td><td>125 BPM</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>12/12/2024 10:45</td><td>Ana Torres</td><td>Niveles bajos de oxígeno</td><td>85%</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>12/12/2024 09:20</td><td>Diego Ramírez</td><td>Hipertensión</td><td>180/110 mmHg</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>12/12/2024 08:05</td><td>Elena Pérez</td><td>Deshidratación</td><td>N/A</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 22:45</td><td>Alberto Vázquez</td><td>Hipoglucemia</td><td>58 mg/dL</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 21:10</td><td>Carmen Ruiz</td><td>Presión arterial baja</td><td>90/60 mmHg</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 19:50</td><td>Mateo Herrera</td><td>Ritmo cardíaco elevado</td><td>140 BPM</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 18:30</td><td>Isabel Ortega</td><td>Niveles bajos de oxígeno</td><td>82%</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 17:10</td><td>Santiago Vega</td><td>Fiebre alta</td><td>40°C</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 16:00</td><td>Carla Jiménez</td><td>Hipertensión</td><td>170/105 mmHg</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 14:45</td><td>Hugo Morales</td><td>Ritmo cardíaco irregular</td><td>130 BPM</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 13:30</td><td>Paula Díaz</td><td>Hipoglucemia</td><td>60 mg/dL</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 12:10</td><td>Marcos Castillo</td><td>Niveles bajos de oxígeno</td><td>83%</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 10:50</td><td>Alicia Blanco</td><td>Fiebre alta</td><td>40.1°C</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>11/12/2024 09:30</td><td>Pedro Navarro</td><td>Presión arterial alta</td><td>165/110 mmHg</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 22:15</td><td>Valeria Romero</td><td>Hipoglucemia</td><td>54 mg/dL</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 20:45</td><td>Andrés Lozano</td><td>Hipertensión</td><td>175/112 mmHg</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 19:10</td><td>Patricia Gil</td><td>Ritmo cardíaco irregular</td><td>128 BPM</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 17:50</td><td>Raúl Mendoza</td><td>Niveles bajos de oxígeno</td><td>84%</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 16:20</td><td>Andrea Méndez</td><td>Fiebre alta</td><td>39.9°C</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 15:00</td><td>Fernando Santos</td><td>Hipertensión</td><td>180/115 mmHg</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 13:45</td><td>Clara Ibáñez</td><td>Deshidratación</td><td>N/A</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 12:30</td><td>Adrián Valle</td><td>Ritmo cardíaco elevado</td><td>145 BPM</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 11:15</td><td>Lorena Serrano</td><td>Hipoglucemia</td><td>50 mg/dL</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 10:00</td><td>José Domínguez</td><td>Fiebre alta</td><td>41°C</td><td><button>Ver Detalles</button></td></tr>
+            <tr><td>10/12/2024 08:45</td><td>Victoria Silva</td><td>Presión arterial alta</td><td>172/108 mmHg</td><td><button>Ver Detalles</button></td></tr>
+        </tbody>
+    </table>
+</body>
+</html>
