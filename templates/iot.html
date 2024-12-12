@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitorización de Constantes Vitales</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #74b9ff, #a29bfe);
+            color: #fff;
+        }
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .info {
+            margin: 20px 0;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .charts-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px;
+        }
+        canvas {
+            max-width: 400px;
+            max-height: 300px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h1>Monitorización de Constantes Vitales</h1>
+        <p><strong>ID del Paciente:</strong> 258C</p>
+        <p><strong>Nombre:</strong> Juan Pérez</p>
+        <p><strong>Fecha:</strong> <span id="currentDate"></span></p>
+    </div>
+    <div class="charts-container">
+        <canvas id="heartRateChart"></canvas>
+        <canvas id="stepsChart"></canvas>
+        <canvas id="temperatureChart"></canvas>
+        <canvas id="oxygenChart"></canvas>
+        <canvas id="bloodPressureChart"></canvas>
+        <canvas id="respiratoryRateChart"></canvas>
+    </div>
+
+    <script>
+        // Actualizar la fecha en tiempo real
+        function updateDate() {
+            const dateElement = document.getElementById('currentDate');
+            const now = new Date();
+            dateElement.textContent = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+        }
+        setInterval(updateDate, 1000);
+    
+        // Datos acumulados
+        const accumulatedData = {
+            timestamps: [],
+            heartRate: [],
+            steps: [],
+            temperature: [],
+            oxygenLevel: [],
+            bloodPressure: [],
+            respiratoryRate: []
+        };
+    
+        // Función para generar un nuevo punto de datos
+        function generateNewData() {
+            const now = new Date().toLocaleTimeString();
+    
+            return {
+                timestamp: now,
+                heartRate: Math.floor(Math.random() * (100 - 60) + 60),
+                steps: Math.floor(Math.random() * 2000),
+                temperature: (Math.random() * (38 - 36) + 36).toFixed(1),
+                oxygenLevel: Math.floor(Math.random() * (100 - 95) + 95),
+                bloodPressure: Math.floor(Math.random() * (140 - 110) + 110),
+                respiratoryRate: Math.floor(Math.random() * (20 - 12) + 12),
+            };
+        }
+    
+        // Función para inicializar y actualizar los gráficos
+        function renderCharts() {
+            const ctxHeartRate = document.getElementById('heartRateChart').getContext('2d');
+            const ctxSteps = document.getElementById('stepsChart').getContext('2d');
+            const ctxTemperature = document.getElementById('temperatureChart').getContext('2d');
+            const ctxOxygen = document.getElementById('oxygenChart').getContext('2d');
+            const ctxBloodPressure = document.getElementById('bloodPressureChart').getContext('2d');
+            const ctxRespiratoryRate = document.getElementById('respiratoryRateChart').getContext('2d');
+    
+            const charts = {
+                heartRateChart: new Chart(ctxHeartRate, {
+                    type: 'line',
+                    data: {
+                        labels: accumulatedData.timestamps,
+                        datasets: [{
+                            label: 'Frecuencia Cardíaca',
+                            data: accumulatedData.heartRate,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                        }]
+                    },
+                    options: { responsive: true, scales: { x: { title: { display: true, text: 'Hora' } }, y: { title: { display: true, text: 'Valor' } } } }
+                }),
+                stepsChart: new Chart(ctxSteps, {
+                    type: 'line',
+                    data: {
+                        labels: accumulatedData.timestamps,
+                        datasets: [{
+                            label: 'Pasos',
+                            data: accumulatedData.steps,
+                            borderColor: 'rgba(255, 159, 64, 1)',
+                            backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                        }]
+                    },
+                    options: { responsive: true, scales: { x: { title: { display: true, text: 'Hora' } }, y: { title: { display: true, text: 'Valor' } } } }
+                }),
+                temperatureChart: new Chart(ctxTemperature, {
+                    type: 'line',
+                    data: {
+                        labels: accumulatedData.timestamps,
+                        datasets: [{
+                            label: 'Temperatura',
+                            data: accumulatedData.temperature,
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                        }]
+                    },
+                    options: { responsive: true, scales: { x: { title: { display: true, text: 'Hora' } }, y: { title: { display: true, text: 'Valor' } } } }
+                }),
+                oxygenChart: new Chart(ctxOxygen, {
+                    type: 'line',
+                    data: {
+                        labels: accumulatedData.timestamps,
+                        datasets: [{
+                            label: 'Nivel de Oxígeno',
+                            data: accumulatedData.oxygenLevel,
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                        }]
+                    },
+                    options: { responsive: true, scales: { x: { title: { display: true, text: 'Hora' } }, y: { title: { display: true, text: 'Valor' } } } }
+                }),
+                bloodPressureChart: new Chart(ctxBloodPressure, {
+                    type: 'line',
+                    data: {
+                        labels: accumulatedData.timestamps,
+                        datasets: [{
+                            label: 'Presión Arterial',
+                            data: accumulatedData.bloodPressure,
+                            borderColor: 'rgba(153, 102, 255, 1)',
+                            backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                        }]
+                    },
+                    options: { responsive: true, scales: { x: { title: { display: true, text: 'Hora' } }, y: { title: { display: true, text: 'Valor' } } } }
+                }),
+                respiratoryRateChart: new Chart(ctxRespiratoryRate, {
+                    type: 'line',
+                    data: {
+                        labels: accumulatedData.timestamps,
+                        datasets: [{
+                            label: 'Frecuencia Respiratoria',
+                            data: accumulatedData.respiratoryRate,
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderWidth: 2,
+                            tension: 0.4,
+                        }]
+                    },
+                    options: { responsive: true, scales: { x: { title: { display: true, text: 'Hora' } }, y: { title: { display: true, text: 'Valor' } } } }
+                })
+            };
+    
+            function updateCharts() {
+                const newData = generateNewData();
+    
+                // Añadir nuevos datos
+                accumulatedData.timestamps.push(newData.timestamp);
+                accumulatedData.heartRate.push(newData.heartRate);
+                accumulatedData.steps.push(newData.steps);
+                accumulatedData.temperature.push(newData.temperature);
+                accumulatedData.oxygenLevel.push(newData.oxygenLevel);
+                accumulatedData.bloodPressure.push(newData.bloodPressure);
+                accumulatedData.respiratoryRate.push(newData.respiratoryRate);
+    
+                // Limitar los datos a los últimos 100 puntos
+                if (accumulatedData.timestamps.length > 100) {
+                    accumulatedData.timestamps.shift();
+                    accumulatedData.heartRate.shift();
+                    accumulatedData.steps.shift();
+                    accumulatedData.temperature.shift();
+                    accumulatedData.oxygenLevel.shift();
+                    accumulatedData.bloodPressure.shift();
+                    accumulatedData.respiratoryRate.shift();
+                }
+    
+                // Actualizar gráficos
+                charts.heartRateChart.update();
+                charts.stepsChart.update();
+                charts.temperatureChart.update();
+                charts.oxygenChart.update();
+                charts.bloodPressureChart.update();
+                charts.respiratoryRateChart.update();
+            }
+    
+            setInterval(updateCharts, 1000); // Actualiza cada segundo
+        }
+    
+        renderCharts();
+    </script>
+    
+
+</body>
+</html>

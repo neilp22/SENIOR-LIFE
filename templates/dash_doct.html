@@ -12,7 +12,7 @@
             background-color: #f4f4f4;
         }
         .header {
-            background-color: #4CAF50;
+            background-color: #262698;
             color: white;
             padding: 20px;
             text-align: center;
@@ -46,7 +46,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         h2 {
-            color: #4CAF50;
+            color: #262698;
         }
         table {
             width: 100%;
@@ -61,7 +61,7 @@
             text-align: left;
         }
         th {
-            background-color: #4CAF50;
+            background-color: #262698;
             color: white;
         }
 
@@ -80,8 +80,18 @@
 
         .sidebar a:hover {
         background-color: #575757; /* Cambiar color al pasar el mouse */
-        border: 1px solid #4CAF50; /* Añadir borde visible */
-        color: #4CAF50; /* Cambiar el texto */
+        border: 1px solid #9193ca; /* Añadir borde visible */
+        color: #8483bf; /* Cambiar el texto */
+        }
+
+        .button {
+        display: inline-block;
+        padding: 6px 12px;
+        text-decoration: none;
+        color: white;
+        background-color: #262698;
+        border-radius: 4px;
+        text-align: center;
         }
 
     </style>
@@ -106,8 +116,10 @@
                     <tr>
                         <th>Nombre</th>
                         <th>Edad</th>
+                        <th>Dni</th>
                         <th>Estado</th>
                         <th>Última Actividad</th>
+                        <th>ID Paciente</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -115,16 +127,20 @@
                     <tr>
                         <td>Juan Pérez</td>
                         <td>78</td>
+                        <td>5789033N</td>
                         <td>Estable</td>
                         <td>10/12/2024</td>
-                        <td><button>Ver Detalles</button></td>
+                        <td>258C</td>
+                        <td><a href="/iot" class="button">Mostrar Constantes</a></td>
                     </tr>
                     <tr>
                         <td>María López</td>
                         <td>82</td>
+                        <td>47890119</td>
                         <td>Monitorización Requerida</td>
                         <td>09/12/2024</td>
-                        <td><button>Ver Detalles</button></td>
+                        <td>455A</td>
+                        <td><a href="/iot2" class="button">Mostrar Constantes</a></td>
                     </tr>
                 </tbody>
             </table>
