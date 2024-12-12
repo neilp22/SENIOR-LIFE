@@ -286,6 +286,18 @@ def videocall():
 def video_ref():
     return render_template('video_ref.html')
 
+@app.route('/contacto')
+def contacto():
+    return render_template('contacto.html')
+
+@app.route('/acercade')
+def acercade():
+    return render_template('acercade.html')
+
+@app.route('/carac')
+def carac():
+    return render_template('carac.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 

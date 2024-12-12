@@ -1,93 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeniorLife - Página Principal</title>
+    <title>SeniorLife - Conectando Generaciones</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #eaf4ff;
+            background-color: #f4f4f4;
         }
         .header {
-            text-align: center;
-            padding: 20px;
-        }
-        .logo {
-            display: block;
-            margin: 0 auto;
-            width: 120px;
-            height: auto;
-        }
-        .main {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
+            padding: 10px 20px;
+            background-color: #122c45;
+            color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        .header h1 {
+            font-size: 1.5em;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1em;
+            padding: 8px 15px;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .nav a:hover {
+            background-color: white;
+            color: #0073e6;
+            border-color: white;
+        }
+        .hero {
+            display: flex;
             justify-content: center;
-            height: 80vh;
+            align-items: center;
+            padding: 40px;
+            background-color: #eaf4ff;
+            gap: 40px;
+        }
+        .hero .slideshow {
+            position: relative;
+            max-width: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid #ccc;
+        }
+        .hero .slideshow img {
+            width: 100%;
+            display: none;
+            animation: fade 1.5s;
+        }
+        .hero .slideshow img.active {
+            display: block;
+        }
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .hero-text {
+            max-width: 600px;
             text-align: center;
         }
-        .main img {
-            width: 200px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-        }
-        .main h1 {
+        .hero-text h2 {
+            font-size: 2em;
             color: #4CAF50;
-            font-size: 28px;
-            margin-bottom: 10px;
         }
-        .main button {
+        .hero-text p {
+            font-size: 1.2em;
+            line-height: 1.5;
+            color: #333;
+        }
+        .cta-buttons {
+            margin-top: 20px;
+        }
+        .cta-buttons button {
             background-color: #FFA500;
             color: white;
             border: none;
-            border-radius: 10px;
-            padding: 15px 40px;
+            padding: 15px 30px;
             margin: 10px;
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 1.2em;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            transition: transform 0.2s, background-color 0.3s;
         }
-        .main button:hover {
+        .cta-buttons button:hover {
             background-color: #FF8C00;
             transform: scale(1.05);
         }
+        .features {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+        .feature {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .feature img {
+            width: 80px;
+        }
+        .feature h3 {
+            color: #2C3E50;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .feature p {
+            font-size: 1em;
+            color: #7f8c8d;
+        }
         .footer {
             text-align: center;
-            padding: 10px;
-            background-color: #4CAF50;
+            background-color: #1a1342;
             color: white;
-            position: relative;
-            width: 100%;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <img src="/static/logo.png" alt="Senior Life Logo" class="logo">
-        <h1>Bienvenido a SeniorLife</h1>
-    </div>
-    <div class="main">
-        <img src="/static/users_image.png" alt="Imagen Representativa">
-        <h1>Conéctate con nosotros para mejorar tu experiencia</h1>
-        <button onclick="window.location.href='/register_user'">Registrar-se</button>
-        <button onclick="window.location.href='/login'">Iniciar Sessió</button>
-    </div>
-    <div class="footer">
+    <header class="header">
+        <img src="/static/logo.png" alt="SeniorLife Logo">
+        <h1>SeniorLife</h1>
+        <nav class="nav">
+            <a href="/carac">Características</a>
+            <a href="/acercade">Acerca de</a>
+            <a href="/contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Conectando Generaciones</h2>
+            <p>SeniorLife es la plataforma que une a las personas mayores con sus seres queridos y profesionales médicos, promoviendo la salud, el bienestar y la conexión social.</p>
+            <div class="cta-buttons">
+                <button onclick="window.location.href='/register_user'">Registrar-se</button>
+                <button onclick="window.location.href='/login'">Iniciar Sesión</button>
+            </div>
+        </div>
+        <div class="slideshow">
+            <img src="/static/slide1.webp" class="active" alt="Slide 1">
+            <img src="/static/slide2.jpg" alt="Slide 2">
+            <img src="/static/slide3.jpg" alt="Slide 3">
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="feature">
+            <img src="/static/heart.png" alt="Heart Rate">
+            <h3>Monitorización de Salud</h3>
+            <p>Realiza un seguimiento de tus constantes vitales con dispositivos portátiles de última generación.</p>
+        </div>
+        <div class="feature">
+            <img src="/static/videocall.png" alt="Videollamadas">
+            <h3>Videollamadas</h3>
+            <p>Conéctate fácilmente con familiares, amigos y profesionales médicos desde cualquier lugar.</p>
+        </div>
+        <div class="feature">
+            <img src="/static/chat_icono.png" alt="Chat">
+            <h3>Mensajes Instantáneos</h3>
+            <p>Comunícate rápidamente con tu red de contactos mediante mensajes, imágenes y más.</p>
+        </div>
+        <div class="feature">
+            <img src="/static/support.png" alt="Support">
+            <h3>Soporte 24/7</h3>
+            <p>Recibe asistencia en cualquier momento para resolver tus dudas o problemas técnicos.</p>
+        </div>
+    </section>
+
+    <footer class="footer">
         &copy; 2024 SeniorLife - Todos los derechos reservados.
-    </div>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slideshow img');
+
+        function showNextSlide() {
+            slides[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % slides.length;
+            slides[currentIndex].classList.add('active');
+        }
+
+        setInterval(showNextSlide, 3000);
+    </script>
 </body>
 </html>
-
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <ul class="flashes">
-            {% for category, message in messages %}
-                <li class="flash-{{ category }}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% endwith %}
