@@ -10,20 +10,29 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+            display: flex;
         }
         .header {
             background-color: #1e1e78;
             color: white;
             padding: 20px;
             text-align: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
         }
         .sidebar {
             width: 250px;
             height: 100vh;
             position: fixed;
+            top: 0;
+            left: 0;
             background-color: #333;
             color: white;
-            padding-top: 20px;
+            padding-top: 80px; /* To account for the fixed header */
+            overflow-y: auto;
         }
         .sidebar a {
             display: block;
@@ -37,6 +46,8 @@
         .main-content {
             margin-left: 250px;
             padding: 20px;
+            width: calc(100% - 250px);
+            margin-top: 80px; /* To account for the fixed header */
         }
         .card {
             background: white;
@@ -66,34 +77,33 @@
         }
 
         .sidebar a {
-        display: block;
-        color: white;
-        padding: 10px 15px;
-        text-decoration: none;
-        text-align: center;
-        background-color: #333; /* Color base */
-        border: 1px solid transparent; /* Para simular botones */
-        border-radius: 5px; /* Bordes redondeados */
-        margin: 5px 0; /* Separación entre botones */
-        transition: background-color 0.3s, color 0.3s;
+            display: block;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            text-align: center;
+            background-color: #333; /* Color base */
+            border: 1px solid transparent; /* Para simular botones */
+            border-radius: 5px; /* Bordes redondeados */
+            margin: 5px 0; /* Separación entre botones */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .sidebar a:hover {
-        background-color: #575757; /* Cambiar color al pasar el mouse */
-        border: 1px solid #9193ca; /* Añadir borde visible */
-        color: #8483bf; /* Cambiar el texto */
+            background-color: #575757; /* Cambiar color al pasar el mouse */
+            border: 1px solid #9193ca; /* Añadir borde visible */
+            color: #8483bf; /* Cambiar el texto */
         }
 
         .button {
-        display: inline-block;
-        padding: 6px 12px;
-        text-decoration: none;
-        color: white;
-        background-color: #1e1e78;
-        border-radius: 4px;
-        text-align: center;
+            display: inline-block;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: white;
+            background-color: #1e1e78;
+            border-radius: 4px;
+            text-align: center;
         }
-
     </style>
 </head>
 <body>
@@ -184,6 +194,65 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="card">
+            <h2>Registro de Visitas Médicas</h2>
+            <h3>Visitas Programadas</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Paciente</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>15/12/2024</td>
+                        <td>10:00</td>
+                        <td>Jose Martinez</td>
+                        <td>Pendiente</td>
+                        <td><a href="#" class="button">Editar</a></td>
+                    </tr>
+                    <tr>
+                        <td>16/12/2024</td>
+                        <td>12:00</td>
+                        <td>Paquita Mendez</td>
+                        <td>Confirmada</td>
+                        <td><a href="#" class="button">Editar</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <h3>Agregar Nueva Visita</h3>
+            <form action="/add-visit" method="POST">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required>
+        
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" name="hora" required>
+        
+                <label for="paciente">Paciente:</label>
+                <select id="paciente" name="paciente">
+                    <option value="Jose Martinez">Jose Martinez</option>
+                    <option value="Paquita Mendez">Paquita Mendez</option>
+                </select>
+        
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Confirmada">Confirmada</option>
+                    <option value="Cancelada">Cancelada</option>
+                </select>
+        
+                <label for="notas">Notas del Médico:</label>
+                <textarea id="notas" name="notas" rows="4" placeholder="Detalles de la visita..."></textarea>
+        
+                <input type="submit" value="Guardar Visita">
+            </form>
+         </div> 
     </div>
 </body>
 </html>
