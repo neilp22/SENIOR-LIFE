@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Médico del Paciente</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e88e5;
+            margin-bottom: 20px;
+        }
+
+        .patient-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #90caf9;
+            padding-bottom: 10px;
+        }
+
+        .patient-info div {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .patient-info div p {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            border-bottom: 2px solid #1e88e5;
+            padding-bottom: 5px;
+            color: #1e88e5;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .important {
+            font-weight: bold;
+            color: #d32f2f;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            background: #1e88e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+        }
+
+        .button-container button:hover {
+            background: #1565c0;
+        }
+
+        .edit-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .edit-container form {
+            display: inline-block;
+            text-align: left;
+        }
+
+        .edit-container input, .edit-container textarea, .edit-container select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .edit-container button {
+            background: #1e88e5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s;
+        }
+
+        .edit-container button:hover {
+            background: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header" style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background-color: #1e88e5; color: white;">
+            <h1 style="margin: 0;">Perfil Médico del Paciente</h1>
+            <a href="/doctor" style="text-decoration: none;">
+                <button style="background: white; color: #1e88e5; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); transition: background 0.3s;">
+                    Atrás
+                </button>
+            </a>
+        </div>
+
+        <div class="patient-info">
+            <div>
+                <p><span class="important">Nombre:</span> Juan Pérez</p>
+                <p><span class="important">ID:</span> 12345</p>
+                <p><span class="important">Fecha de Nacimiento:</span> 14/05/1950</p>
+                <p><span class="important">Edad:</span> 74 años</p>
+                <p><span class="important">DNI:</span> 5789033N</p>
+            </div>
+
+            <div>
+                <p><span class="important">Teléfono:</span> (+34) 600 123 456</p>
+                <p><span class="important">Dirección:</span> Calle Mayor, 123, Madrid</p>
+                <p><span class="important">Sexo:</span> Masculino</p>
+                <p><span class="important">Estado Actual:</span> Estable</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Historial Médico</h2>
+            <p><span class="important">Condiciones Previas:</span> Hipertensión, Diabetes Tipo 2</p>
+            <p><span class="important">Intervenciones Quirúrgicas:</span> Bypass coronario en 2015</p>
+            <p><span class="important">Alergias:</span> Penicilina</p>
+            <p><span class="important">Medicación Actual:</span> Metformina, Atenolol</p>
+            <p><span class="important">Última Hospitalización:</span> 20/08/2024 (Complicaciones por Hipertensión)</p>
+            <p><span class="important">Vacunas:</span> Gripe (2024), COVID-19 (Refuerzo 2023)</p>
+        </div>
+
+        <div class="section">
+            <h2>Dispositivos Wearables</h2>
+            <p><span class="important">Modelo:</span> Fitbit Charge 5</p>
+            <p><span class="important">Uso Actual:</span> Monitoreo de frecuencia cardíaca, pasos, y sueño</p>
+            <p><span class="important">Última Sincronización:</span> 12/12/2024, 10:30</p>
+            <p><span class="important">Alertas Recientes:</span> Presión arterial alta detectada (12/12/2024, 09:00)</p>
+        </div>
+
+        <div class="section">
+            <h2>Contactos de Emergencia</h2>
+            <p><span class="important">Nombre:</span> Ana Pérez</p>
+            <p><span class="important">Relación:</span> Hija</p>
+            <p><span class="important">Teléfono:</span> (+34) 700 987 654</p>
+            <p><span class="important">Correo Electrónico:</span> ana.perez@gmail.com</p>
+        </div>
+
+        <div class="section">
+            <h2>Notas del Médico</h2>
+            <p><span class="important">Observaciones:</span> Paciente responde bien al tratamiento actual, pero requiere monitoreo continuo para evitar recaídas.</p>
+            <p><span class="important">Próxima Revisión:</span> 15/01/2025</p>
+        </div>
+
+        <div class="button-container">
+            <button onclick="window.location.href='/iot'">Ver Constantes Vitales</button>
+        </div>
+
+        <div class="edit-container">
+            <h2>Editar Información del Paciente</h2>
+            <form action="/perfil_medico" method="POST">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" value="Juan Pérez">
+
+                <label for="telefono">Teléfono:</label>
+                <input type="text" id="telefono" name="telefono" value="(+34) 600 123 456">
+
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" value="Calle Mayor, 123, Madrid">
+
+                <label for="observaciones">Observaciones:</label>
+                <textarea id="observaciones" name="observaciones" rows="4">Paciente responde bien al tratamiento actual, pero requiere monitoreo continuo para evitar recaídas.</textarea>
+
+                <label for="proxima_revision">Próxima Revisión:</label>
+                <input type="date" id="proxima_revision" name="proxima_revision" value="2025-01-15">
+
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

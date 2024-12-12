@@ -258,6 +258,14 @@ def iotenvivo():
 def iotenvivo2():
     return render_template('iot2.html')
 
+@app.route('/perfil_medico')
+def perfil_medico():
+    return render_template('perfil_medico.html')
+
+@app.route('/perfil_medico2')
+def perfil_medico2():
+    return render_template('perfil_medico2.html')
+
 @app.route('/videocall')
 def videocall():
     return render_template('video.html')
