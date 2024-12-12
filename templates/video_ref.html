@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Doctor - Videollamadas</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .big-button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .big-button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Dashboard Doctor - Videollamadas</h1>
+        </h2>SeniorLife - Referencia de Videollamadas
+        <a href="/doctor" class="big-button">Volver atrás</a>
+    </div>
+
+    <div class="container">
+        <a href="/videocall" class="big-button">Iniciar Videollamada</a>
+        <h2>Historial de Videollamadas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Paciente</th>
+                    <th>DNI</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="past-calls">
+                <tr>
+                    <td>123</td>
+                    <td>45678901X</td>
+                    <td>10/12/2024</td>
+                    <td>Completada</td>
+                </tr>
+                <tr>
+                    <td>456</td>
+                    <td>12345678Y</td>
+                    <td>09/12/2024</td>
+                    <td>Completada</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Videollamadas Pendientes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Paciente</th>
+                    <th>DNI</th>
+                    <th>Fecha</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="pending-calls">
+                <tr>
+                    <td>789</td>
+                    <td>98765432Z</td>
+                    <td>12/12/2024</td>
+                    <td><button onclick="acceptCall(789)">Aceptar</button></td>
+                </tr>
+                <tr>
+                    <td>321</td>
+                    <td>65432109W</td>
+                    <td>12/12/2024</td>
+                    <td><button onclick="acceptCall(321)">Aceptar</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Próximas Videollamadas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Paciente</th>
+                    <th>DNI</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody id="upcoming-calls">
+                <tr>
+                    <td>123</td>
+                    <td>45678901X</td>
+                    <td>12/12/2024</td>
+                </tr>
+                <tr>
+                    <td>456</td>
+                    <td>12345678Y</td>
+                    <td>13/12/2024</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function startVideoCall() {
+            window.location.href = '/video.html';
+        }
+
+        function acceptCall(patientId) {
+            alert(`Videollamada con el paciente ${patientId} aceptada.`);
+            // Aquí puedes añadir lógica para manejar la aceptación de la videollamada
+        }
+    </script>
+</body>
+</html>
+
+

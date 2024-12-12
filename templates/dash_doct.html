@@ -64,6 +64,26 @@
             background-color: #4CAF50;
             color: white;
         }
+
+        .sidebar a {
+        display: block;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        text-align: center;
+        background-color: #333; /* Color base */
+        border: 1px solid transparent; /* Para simular botones */
+        border-radius: 5px; /* Bordes redondeados */
+        margin: 5px 0; /* Separación entre botones */
+        transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar a:hover {
+        background-color: #575757; /* Cambiar color al pasar el mouse */
+        border: 1px solid #4CAF50; /* Añadir borde visible */
+        color: #4CAF50; /* Cambiar el texto */
+        }
+
     </style>
 </head>
 <body>
@@ -74,9 +94,9 @@
         <a href="#">Inicio</a>
         <a href="#pacientes">Pacientes</a>
         <a href="#alertas">Alertas</a>
-        <a href="#videollamadas">Videollamadas</a>
+        <a href="/video_ref" class="sidebar-button">Ir a Videollamadas</a>
         <a href="#configuracion">Configuración</a>
-        <a href="#logout">Cerrar Sesión</a>
+        <a href="/" class="sidebar-button">Cerrar Session</a>
     </div>
     <div class="main-content">
         <div class="card">

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorLife - Videoconferencia</title>
+    <script src="https://meet.jit.si/external_api.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: white;
+        }
+
+        .header {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(90deg, #4CAF50, #388E3C);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .button {
+            background-color: #1f6921;
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 20px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        #video-conference {
+            width: 80%;
+            height: 70vh;
+            margin-top: 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .bbutton {
+        display: inline-block;
+        background-color: #333; /* Fondo oscuro */
+        color: white; /* Texto blanco */
+        padding: 10px 20px; /* Espaciado interno */
+        text-decoration: none; /* Quitar subrayado */
+        border-radius: 5px; /* Bordes redondeados */
+        font-size: 16px; /* Tamaño de fuente */
+        font-weight: bold; /* Texto en negrita */
+        transition: background-color 0.3s, transform 0.3s; /* Efectos */
+        }
+
+        .bbutton:hover {
+            background-color: #555; /* Cambiar color al pasar el mouse */
+            transform: scale(1.05); /* Efecto de escala */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        SeniorLife - Videoconferencia
+    </div>
+
+    <div class="container">
+        <button id="start-conference-btn" class="button">Iniciar Conferencia</button>
+        <a href="/video_ref" class="bbutton">volver atrás</a>
+        <div id="video-conference"></div>
+    </div>
+
+    <div class="footer">
+        &copy; 2024 SeniorLife - Todos los derechos reservados
+    </div>
+
+    <script>
+        async function startVideoConference() {
+            // Genera un nombre de sala único
+            const roomName = `SeniorLife_${Date.now()}`;
+            const userName = "Usuario SeniorLife";
+
+            try {
+                // Configuración de Jitsi
+                const domain = "meet.jit.si"; // Servidor Jitsi público
+                const options = {
+                    roomName: roomName,
+                    width: "100%",
+                    height: "100%",
+                    parentNode: document.getElementById("video-conference"),
+                    configOverwrite: {
+                        prejoinPageEnabled: false,
+                        startWithAudioMuted: false,
+                        startWithVideoMuted: false,
+                    },
+                    userInfo: {
+                        displayName: userName,
+                    },
+                };
+                const api = new JitsiMeetExternalAPI(domain, options);
+
+                // Opcional: Manejo de eventos
+                api.addEventListener("videoConferenceJoined", () => {
+                    console.log("Conferencia iniciada correctamente");
+                });
+
+                api.addEventListener("videoConferenceLeft", () => {
+                    console.log("Conferencia finalizada");
+                });
+            } catch (error) {
+                console.error("Error al iniciar la videoconferencia:", error);
+                alert("No se pudo iniciar la conferencia. Por favor, intenta nuevamente.");
+            }
+        }
+
+        document.getElementById("start-conference-btn").addEventListener("click", startVideoConference);
+    </script>
+</body>
+</html>

@@ -227,20 +227,28 @@ def logout():
 # Ruta para crear una videoconferencia
 @app.route('/create-conference', methods=['POST'])
 def create_conference():
-    data = request.json
-    selected_date = data.get('date')
-    user_name = data.get('userName', 'Usuario SeniorLife')
+    user_name = request.json.get('userName', 'Usuario SeniorLife')  # Nombre del usuario enviado desde el frontend
 
-    # Generar un nombre único para la sala, incluyendo la fecha seleccionada
-    room_name = f"SeniorLife_{selected_date}_{uuid.uuid4().hex[:8]}"
+    # Generar un nombre único para la sala
+    room_name = f"SeniorLife_{uuid.uuid4().hex[:8]}"
 
-    # Opcional: guardar la programación en una base de datos
-    # db.save_conference(user_name, selected_date, room_name)
-
+    # Devolver el nombre de la sala y el nombre del usuario
     return jsonify({
         "roomName": room_name,
         "userName": user_name
     })
+
+@app.route('/doctor')
+def doctor():
+    return render_template('dash_doct.html')
+
+@app.route('/videocall')
+def videocall():
+    return render_template('video.html')
+
+@app.route('/video_ref')
+def video_ref():
+    return render_template('video_ref.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
