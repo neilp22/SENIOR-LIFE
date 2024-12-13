@@ -222,6 +222,29 @@ def logout():
     flash('Has cerrado sesión exitosamente.', 'success')
     return redirect(url_for('index.html'))
 
+@app.route('/update_profile', methods=['POST'])
+def update_profile():
+    if 'user_id' not in session:
+        return jsonify({"error": "No estás autenticado"}), 401
+
+    user_id = session['user_id']
+    data = request.json  # Recibir datos en formato JSON
+
+    # Abrir conexión con la base de datos
+    conn = sqlite3.connect('database/data.sqlite')
+    cursor = conn.cursor()
+
+    # Actualizar la información del usuario
+    cursor.execute('''
+        UPDATE usuarios
+        SET nombre = ?, apellidos = ?, telefono = ?, direccion = ?, sexo = ?, fecha_nacimiento = ?
+        WHERE id = ?
+    ''', (data['name'], data['surname'], data['phone'], data['address'], data['sex'], data['dob'], user_id))
+
+    conn.commit()
+    conn.close()
+
+    return jsonify({"success": "Perfil actualizado correctamente"})
 
 
 # Ruta para crear una videoconferencia
