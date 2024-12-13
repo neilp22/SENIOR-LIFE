@@ -3,51 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SeniorLife - Formulari de Registre</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #eaf4ff;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #9ba0cb;
+            background-color: #090734;
             color: white;
             padding: 20px;
             text-align: center;
+            font-size: 1.5rem;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
         .container {
             max-width: 600px;
-            margin: 20px auto;
+            margin: 40px auto;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        h1, h2 {
-            color: #1a1258;
+        h1 {
+            color: #d6d7e0;
+            text-align: center;
+        }
+
+        h2 {
+            color: #050a39;
+            text-align: center;
         }
         label {
             display: block;
             margin: 10px 0 5px;
             font-weight: bold;
+            color: #333;
         }
         input, select, button, textarea {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
+            padding: 12px;
+            margin-bottom: 20px;
             border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: #6c63ff;
+            outline: none;
         }
         button {
-            background-color: #4CAF50;
+            background-color: #6c63ff;
             color: white;
             border: none;
+            padding: 15px;
+            font-size: 1rem;
+            border-radius: 8px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #5a54d6;
+        }
+        .consent-section {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: left;
+            color: #4a4e69;
+        }
+        .consent-section label {
+            display: inline-block;
+            vertical-align: middle;
+            font-weight: normal;
+        }
+        .consent-section input {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        .consent-section a {
+            color: #6c63ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .consent-section a:hover {
+            text-decoration: underline;
         }
     </style>
     <script>
@@ -66,7 +108,7 @@
     <header>
         <h1>SeniorLife - Formulari de Registre</h1>
         <a href="/" style="text-decoration: none;">
-            <button style="background: #9ba0cb; color: #f2f4f6; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); transition: background 0.3s;">
+            <button style="background: #090734; color: #f2f4f6; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); transition: background 0.3s;">
                 Atrás
             </button>
         </a>
@@ -141,6 +183,13 @@
             <label for="pacient-videotrucada">Calendari de Videotrucada</label>
             <input type="datetime-local" id="pacient-videotrucada" name="pacient-videotrucada">
 
+            <div class="consent-section">
+                <label>
+                    <input type="checkbox" name="consent" required>
+                    He leído y acepto la <a href="/privacy" target="_blank">política de privacidad</a>.
+                </label>
+            </div>
+
             <button type="submit">Enviar Formulari</button>
         </form>
 
@@ -184,6 +233,13 @@
 
             <label for="familiar-pacient">ID del Pacient (DNI)</label>
             <input type="text" id="familiar-pacient" name="familiar-pacient" required>
+
+            <div class="consent-section">
+                <label>
+                    <input type="checkbox" name="consent" required>
+                    He leído y acepto la <a href="/privacy" target="_blank">política de privacidad</a>.
+                </label>
+            </div>
 
             <button type="submit">Enviar Formulari</button>
         </form>
@@ -249,6 +305,13 @@
                 <option value="metge">Metge</option>
                 <option value="infermer">Infermer</option>
             </select>
+
+            <div class="consent-section">
+                <label>
+                    <input type="checkbox" name="consent" required>
+                    He leído y acepto la <a href="/privacy" target="_blank">política de privacidad</a>.
+                </label>
+            </div>
 
             <button type="submit">Enviar Formulari</button>
         </form>

@@ -4,65 +4,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SeniorLife - Dashboard Familiar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
+            color: #333;
         }
         .header {
-            background-color: #4CAF50;
+            background-color: #3E8E7E;
             color: white;
             padding: 20px;
             text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
         .sidebar {
             width: 250px;
             height: 100vh;
             position: fixed;
-            background-color: #333;
+            background-color: #2C3E50;
             color: white;
-            padding-top: 20px;
+            padding-top: 80px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
         }
         .sidebar a {
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             color: white;
-            padding: 10px 15px;
+            padding: 12px 20px;
             text-decoration: none;
+            font-size: 16px;
         }
         .sidebar a:hover {
-            background-color: #575757;
+            background-color: #34495E;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar a svg {
+            fill: white;
+            width: 20px;
+            height: 20px;
         }
         .main-content {
             margin-left: 250px;
-            padding: 20px;
+            padding: 100px 20px 20px;
         }
         .card {
             background: white;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         h2 {
-            color: #4CAF50;
+            color: #3E8E7E;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
+            font-size: 14px;
         }
         table, th, td {
             border: 1px solid #ddd;
         }
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
         }
         th {
-            background-color: #4CAF50;
+            background-color: #3E8E7E;
             color: white;
+        }
+        td button {
+            background-color: #3E8E7E;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        td button:hover {
+            background-color: #2C3E50;
+            transition: background-color 0.3s ease;
+        }
+        .consent-alert {
+            background-color: #FFCC00;
+            color: #333;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .wearable-data {
+            margin-top: 20px;
+        }
+        .wearable-data h3 {
+            color: #3E8E7E;
+        }
+        .accessibility {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: right;
+        }
+        .accessibility a {
+            color: #3E8E7E;
+            text-decoration: none;
+        }
+        .accessibility a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-content {
+                margin-left: 0;
+            }
         }
     </style>
 </head>
@@ -71,14 +137,17 @@
         <h1>Dashboard - Familiar</h1>
     </div>
     <div class="sidebar">
-        <a href="#">Inicio</a>
-        <a href="#estado">Estado del Familiar</a>
-        <a href="#alertas">Alertas</a>
-        <a href="#videollamadas">Videollamadas</a>
-        <a href="#configuracion">Configuración</a>
-        <a href="#logout">Cerrar Sesión</a>
+        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 12l18-12v24z"/></svg>Inicio</a>
+        <a href="#estado"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h18v18h-18z"/></svg>Estado del Familiar</a>
+        <a href="#alertas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0l12 12h-24z"/></svg>Alertas</a>
+        <a href="#videollamadas"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 5h18v14h-18z"/></svg>Videollamadas</a>
+        <a href="#configuracion"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0l12 12h-24z"/></svg>Configuración</a>
+        <a href="/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 3h18v18h-18z"/></svg>Cerrar Sesión</a>
     </div>
     <div class="main-content">
+        <div class="consent-alert">
+            <p>Por favor, asegúrate de haber otorgado tu consentimiento para el manejo de datos sensibles. <a href="#">Más información</a>.</p>
+        </div>
         <div class="card">
             <h2>Estado del Familiar</h2>
             <table>
@@ -106,7 +175,6 @@
                 </tbody>
             </table>
         </div>
-
         <div class="card">
             <h2>Alertas Recientes</h2>
             <table>
@@ -116,6 +184,7 @@
                         <th>Nivel de Riesgo</th>
                         <th>Fecha</th>
                         <th>Acciones</th>
+                        <th>Mostrar Constantes</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,16 +192,28 @@
                         <td>Fiebre Alta</td>
                         <td>Alta</td>
                         <td>10/12/2024</td>
-                        <td><button>Ver Alerta</button></td>
+                        <td><a href="/alerta" class="button">Mostrar Alerta</a></td>
+                        <td><a href="/iot" class="button">Mostrar Constanes en vivo</a></td>
                     </tr>
                     <tr>
                         <td>Caída Detectada</td>
                         <td>Media</td>
                         <td>09/12/2024</td>
-                        <td><button>Ver Alerta</button></td>
+                        <td><a href="/alerta2" class="button">Mostrar Alerta</a></td>
+                        <td><a href="/iot2" class="button">Mostrar Constanes en vivo</a></td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="card wearable-data">
+            <h2>Datos de Wearables</h2>
+            <h3>Juan Pérez</h3>
+            <p>Pasos: 5,432</p>
+            <p>Frecuencia Cardíaca: 72 bpm</p>
+            <p>Temperatura: 36.6°C</p>
+        </div>
+        <div class="accessibility">
+            <a href="#">Opciones de Accesibilidad</a>
         </div>
     </div>
 </body>

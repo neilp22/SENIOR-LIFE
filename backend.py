@@ -298,6 +298,10 @@ def chats_doctor():
 def config():
     return render_template('configuracion.html')
 
+@app.route('/privacy')
+def priv():
+    return render_template('privacy.html')
+
 @app.route('/historial_alerta')
 def hist_alerta():
     return render_template('historial_alerta.html')
@@ -342,8 +346,12 @@ def acercade():
 def carac():
     return render_template('carac.html')
 
+@app.route('/fam')
+def fam():
+    return render_template('dash_fam.html')
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=8000, debug=True)
 
 
 
