@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil del Infermero</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #5E4FDB;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        header img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        header .profile-info {
+            display: flex;
+            align-items: center;
+        }
+
+        header .profile-info img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #E3E0FB;
+            position: fixed;
+            top: 75px;
+            bottom: 0;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        .sidebar a {
+            display: block;
+            text-decoration: none;
+            color: #333;
+            margin-bottom: 15px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #D6D3F0;
+            color: #5E4FDB;
+        }
+
+        .logout {
+            margin-top: 30px;
+            background-color: #FF6B6B;
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .logout:hover {
+            background-color: #FF4E4E;
+        }
+
+        .main-content {
+            margin-left: 270px;
+            padding: 30px;
+            transition: margin-left 0.3s;
+        }
+
+        h2 {
+            color: #5E4FDB;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #E3E0FB;
+            color: #5E4FDB;
+        }
+
+        button {
+            background-color: #5E4FDB;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4B3EDB;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 5;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body onload="mostrarAssistencies()">
+<header>
+    <div class="logo">
+        <img src="/static/logo.png" alt="Logo de SeniorLife">
+        <h1>SeniorLife</h1>
+    </div>
+    <div class="profile-info">
+        <img src="/static/inferma.avif" alt="Foto de Perfil">
+        <span>Laura López</span>
+    </div>
+</header>
+<div class="sidebar">
+    <a href="#" onclick="mostrarAssistencies()">Assistències a Domicili</a>
+    <a href="#" onclick="mostrarMedicaments()">Medicament</a>
+    <a href="#" onclick="mostrarVisites()">Registrar Visites</a>
+    <a href="#" onclick="mostrarConfiguracio()">Configuració</a>
+    <a class="logout" href="#" onclick="logout()">Tancar Sessió</a>
+</div>
+<div class="main-content">
+    <h2 id="section-title">Benvingut al perfil de l'Infermer</h2>
+    <div id="section-content">
+        <!-- Contingut interactiu aquí -->
+    </div>
+</div>
+<div class="popup" id="popup">
+    <h3 id="popup-title"></h3>
+    <p id="popup-message"></p>
+    <button onclick="closePopup()">Tancar</button>
+</div>
+<div class="overlay" id="overlay"></div>
+<script>
+    const assistencies = [
+        { pacient: "Anna Martínez", dni: "12345678A", direccio: "Carrer Major, 10" },
+        { pacient: "Joan García", dni: "23456789B", direccio: "Carrer Nou, 15" }
+    ];
+    const medicaments = [
+        { pacient: "Anna Martínez", dni: "12345678A", medicament: "Paracetamol", dies: "06/12/2024 - 13/12/2024 (Matí, Nit)" },
+        { pacient: "Joan García", dni: "23456789B", medicament: "Ibuprofeno", dies: "05/12/2024 (Matí)" }
+    ];
+    const visites = [
+        { pacient: "Laura Fernández", dni: "56789012C", visita: "Revisió general 10/12/2024" },
+        { pacient: "Anna Martínez", dni: "12345678A", visita: "Seguiment 12/12/2024" }
+    ];
+    function mostrarAssistencies() {
+        document.getElementById("section-title").textContent = "Assistències a Domicili";
+        document.getElementById("section-content").innerHTML = `
+            <table>
+                <thead>
+                    <tr><th>Pacient</th><th>DNI</th><th>Direcció</th><th>Opcions</th></tr>
+                </thead>
+                <tbody>
+                    ${assistencies.map(a => `
+                        <tr>
+                            <td>${a.pacient}</td><td>${a.dni}</td><td>${a.direccio}</td>
+                            <td><button onclick="confirmarAssistencia('${a.pacient}', '${a.dni}')">Confirmar</button></td>
+                        </tr>
+                    `).join("")}
+                </tbody>
+            </table>
+        `;
+    }
+    function mostrarMedicaments() {
+        document.getElementById("section-title").textContent = "Medicaments Recetats";
+        document.getElementById("section-content").innerHTML = `
+            <table>
+                <thead>
+                    <tr><th>Pacient</th><th>DNI</th><th>Medicament</th><th>Dies</th></tr>
+                </thead>
+                <tbody>
+                    ${medicaments.map(m => `
+                        <tr>
+                            <td>${m.pacient}</td><td>${m.dni}</td><td>${m.medicament}</td><td>${m.dies}</td>
+                        </tr>
+                    `).join("")}
+                </tbody>
+            </table>
+        `;
+    }
+    function mostrarVisites() {
+        document.getElementById("section-title").textContent = "Registrar Visites";
+        document.getElementById("section-content").innerHTML = `
+            <table>
+                <thead>
+                    <tr><th>Pacient</th><th>DNI</th><th>Visites</th></tr>
+                </thead>
+                <tbody>
+                    ${visites.map(v => `
+                        <tr>
+                            <td>${v.pacient}</td><td>${v.dni}</td><td>${v.visita}</td>
+                        </tr>
+                    `).join("")}
+                </tbody>
+            </table>
+            <h3>Afegir nova visita</h3>
+            <form onsubmit="return afegirVisita()">
+                <label>Nom del pacient:</label><input type="text" id="nomPacient" required><br>
+                <label>DNI:</label><input type="text" id="dniPacient" required><br>
+                <label>Descripció:</label><textarea id="descVisita" required></textarea><br>
+                <button type="submit">Afegir Visita</button>
+            </form>
+        `;
+    }
+    function mostrarConfiguracio() {
+        document.getElementById("section-title").textContent = "Configuració del Perfil";
+        document.getElementById("section-content").innerHTML = `
+            <p><strong>Nom:</strong> Laura López</p>
+            <p><strong>DNI:</strong> 34567890D</p>
+            <p><strong>Email:</strong> laura.lopez@example.com</p>
+            <p><strong>Telèfon:</strong> 654321987</p>
+            <p><strong>Assistència a Domicili:</strong> Sí</p>
+        `;
+    }
+    function logout() {
+        window.location.href = "/";
+    }
+    function confirmarAssistencia(pacient, dni) {
+        mostrarPopup("Assistència Confirmada", `L'assistència a domicili per ${pacient} (DNI: ${dni}) ha estat confirmada.`);
+    }
+    function mostrarPopup(title, message) {
+        document.getElementById("popup-title").textContent = title;
+        document.getElementById("popup-message").textContent = message;
+        document.getElementById("popup").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+    }
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
+</body>
+</html>

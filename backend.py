@@ -114,11 +114,28 @@ def dashboard():
 
     # Cerrar la conexión
 
-    user_type = session.get('user_type')
+    user_type = user_data[1]  # Columna 'tipo' en usuarios (índice 1)
 
-    conn.close()
     if user_type == 'profesional':
-        return render_template('dash_doct.html',user_data=user_data)
+        # Obtener datos del profesional para identificar el rol
+        cursor.execute("SELECT rol FROM profesionales WHERE usuario_id = ?", (user_id,))
+        professional_data = cursor.fetchone()
+
+        if not professional_data:
+            flash('No se encontraron datos específicos del profesional.', 'error')
+            return redirect(url_for('login'))
+
+        professional_role = professional_data[0]  # Columna 'rol' (índice 0)
+
+        # Redirigir según el rol del profesional
+        if professional_role == 'metge':
+            return render_template('dash_doct.html', user_data=user_data)
+        elif professional_role == 'infermer':
+            return render_template('perfil_enfermero.html', user_data=user_data)
+        else:
+            flash('Rol profesional desconocido.', 'error')
+            return redirect(url_for('login'))
+    
     elif user_type == 'familiar':
         return render_template('dash_fam.html',user_data=user_data)
     elif user_type == 'paciente':
@@ -127,7 +144,7 @@ def dashboard():
         flash('Error al determinar el tipo de usuario.', 'error')
         return redirect(url_for('login'))
     
-
+ 
 
 # Ruta de registro
 @app.route('/register_user', methods=['GET', 'POST'])
@@ -264,6 +281,10 @@ def create_conference():
 @app.route('/doctor')
 def doctor():
     return render_template('dash_doct.html')
+
+@app.route('/infermera')
+def infermera():
+    return render_template('perfil_enfermero.html')
 
 @app.route('/alerta')
 def alerta():
